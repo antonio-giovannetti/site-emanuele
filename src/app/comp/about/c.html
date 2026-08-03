@@ -1,0 +1,39 @@
+<section id="about" class="about">
+    <div class="container">
+        <h2>Chi sono</h2>
+        <div class="about-grid">
+            <div class="about-image">
+                <div class="profile-placeholder">
+                    <img
+                        src="{{titolare.image}}"
+                        alt="Foto di {{titolare.name}}"
+                        style="width:100%;height:100%;display:block;object-fit:cover;object-position:50% 0;"
+                    >
+                </div>
+            </div>
+            <div class="about-content">
+                <h3>{{titolare.name}}<span class="cert btn btn-primary"><i class="fa-solid fa-award"></i><a [routerLink]="['cert']">Certificazioni</a></span></h3>
+
+                <p><strong>Psicoterapeuta clinico specializzata in terapia cognitivo-comportamentale</strong></p>
+                <p>Sono uno psicoterapeuta con esperienza nel supportare individui e coppie attraverso momenti di difficoltà emotiva. Il mio approccio è basato sull'ascolto empatico, la comprensione profonda e l'utilizzo di tecniche evidence-based per facilitare il cambiamento positivo.</p>
+                <p>Specializzato in:</p>
+                <ul>
+                    @for (tit of titolare.spec; track tit) {
+                        <li>{{ tit }}</li>
+                    }
+                </ul>
+
+                <div class="credentials">
+                    <div class="credential-item">
+                        <h4>Formazione</h4>
+                        <ul>
+                            @for (tit of titolare.formazione; track tit) {
+                                <li>{{ tit }}</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

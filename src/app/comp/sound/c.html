@@ -1,0 +1,14 @@
+<div class="controls">
+    <span>{{_aud?.substring(13)}}</span>
+
+@if(play) {
+    <i class="fa-solid fa-pause" (click)="pauseSound()"></i>
+} @else {
+    <i class="fa-solid fa-play" (click)="playSound()"></i>
+}
+    <i class="fa-solid fa-forward" (click)="next()"></i>
+</div>
+<audio #audioPlayer>
+    <source [src]="_aud" type="audio/mpeg" loop="true" />
+</audio>
+

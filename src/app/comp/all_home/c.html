@@ -1,0 +1,19 @@
+<!-- Hero Section -->
+<c-hero ></c-hero>
+<!-- Webinar Registration Section -->
+<!-- About Section -->
+<c-about />
+
+@for(w of webinars; track w ) {
+    <c-webinar [webinar$]="of(w)" />
+}
+
+
+
+<!-- Services Section -->
+<c-servizio />
+
+<!-- Process Section -->
+<c-process />
+<!-- Contact Section -->
+<c-contact />

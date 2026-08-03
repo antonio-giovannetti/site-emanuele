@@ -1,0 +1,25 @@
+.control,
+.controls {
+  position: fixed;
+  top: 5rem;
+  right: 0;
+  width: min(30rem, calc(100vw - 2rem));
+  min-height: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: blanchedalmond;
+  z-index: 1;
+}
+
+.controls span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+

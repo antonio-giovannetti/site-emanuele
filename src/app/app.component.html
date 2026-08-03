@@ -1,0 +1,11 @@
+<body>
+<c-audio [aud]="auds"></c-audio>
+
+<c-header (scroll)="scrollToSection($event)"></c-header>
+
+<main>
+    <router-outlet></router-outlet>
+</main>
+
+<c-footer />
+</body>

@@ -1,0 +1,20 @@
+<div class="container">
+    <h2>Le mie certificazioni</h2>
+
+
+    <div class="certs container">
+    @for (cert of certs; track cert) {
+            <button class="cert" type="button" (click)="openCert(cert)">
+                <img [src]="cert.src" [alt]="cert.caption">
+                <span class="caption">{{ cert.caption }}</span>
+            </button>
+        }
+    </div>
+    @if (selectedCert) {
+        <div class="cert-lightbox" (click)="closeCert()">
+            <img [src]="selectedCert.src" [alt]="selectedCert.caption" (click)="$event.stopPropagation()">
+            <span class="lightbox-caption">{{ selectedCert.caption }}</span>
+        </div>
+    }
+</div>
+

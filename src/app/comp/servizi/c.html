@@ -1,0 +1,16 @@
+<section id="services" class="services">
+    <section class="container">
+        <h2>I miei servizi</h2>
+        <div class="services-grid">
+
+            @for (servizio of servizi; track servizio) {
+            <div class="service-card">
+            <div class="service-icon"><i class="{{ servizio?.icon }}"></i></div>
+            <h3>{{ servizio?.title }}</h3>
+            <p>{{ servizio?.description }}</p>
+            <p class="price">€{{ servizio?.cost }} a sessione</p>
+            </div>
+            }
+</div>
+</section>
+</section>

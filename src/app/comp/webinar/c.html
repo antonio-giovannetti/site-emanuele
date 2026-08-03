@@ -1,0 +1,91 @@
+<section id="webinar" class="webinar">
+    <div class="container">
+        <div class="webinar-grid">
+            <div class="webinar-content">
+                <span class="webinar-badge">📺 WEBINAR GRATUITO</span>
+                <h2>{{w?.title}}</h2>
+                <p>{{w?.description}}</p>
+
+                <div class="webinar-details">
+                    <div class="detail-item">
+                        <strong><i class="fa-regular fa-calendar-days"></i> Data: </strong>{{w?.utcDate |  date: 'EEEE d MMMM yyyy':'':'it'}}
+                    </div>
+                    <div class="detail-item">
+                        <strong><i class="fa-regular fa-clock"></i> Ora:</strong> {{w?.utcDate |  date: 'HH:mm':'':'it'}}
+                    </div>
+                    <div class="detail-item">
+                        <strong><i class="fa-solid fa-people-group"></i> Posti:</strong> Limitati a {{w?.people}} partecipanti
+                    </div>
+                    <div class="detail-item">
+                        <strong><i class="fa-solid fa-gift"></i> Bonus:</strong> {{w?.extra}}
+                    </div>
+                </div>
+
+                <div class="webinar-benefits">
+                    <h3>Cosa imparerai:</h3>
+                    <ul>
+                        @for(d of w?.args; track d) {
+                            <li>{{ d }}</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="webinar-form">
+                <div class="form-card">
+                    <h3>Iscriviti gratuitamente</h3>
+                    <p class="form-subtitle">Accesso immediato al link Zoom</p>
+
+                    <form (ngSubmit)="onWebinarSubmit($event)" class="webinar-form-fields">
+                        <div class="form-group">
+                            <label for="webinar-name">Nome *</label>
+                            <input type="text" id="webinar-name" name="webinar-name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="webinar-email">Email *</label>
+                            <input type="email" id="webinar-email" name="webinar-email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="webinar-phone">Telefono</label>
+                            <input type="tel" id="webinar-phone" name="webinar-phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="webinar-interest">Quali temi ti interessano? *</label>
+                            <select id="webinar-interest" name="webinar-interest" required>
+                                <option value="">-- Seleziona --</option>
+                                <option value="ansia">Ansia e stress</option>
+                                <option value="depressione">Depressione</option>
+                                <option value="relazioni">Relazioni di coppia</option>
+                                <option value="autostima">Autostima</option>
+                                <option value="altro">Altro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="webinar-privacy" name="webinar-privacy" required>
+                            <label for="webinar-privacy" class="checkbox-label">Accetto l'informativa sulla privacy</label>
+                        </div>
+
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="webinar-newsletter" name="webinar-newsletter">
+                            <label for="webinar-newsletter" class="checkbox-label">Voglio ricevere contenuti esclusivi e offerte</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">Registrati al webinar</button>
+
+                        <p class="form-footer">Riceverai il link Zoom per email entro 24 ore</p>
+                    </form>
+
+                    <div class="form-guarantee">
+                        <span>✓ Nessuno spam</span>
+                        <span>✓ Cancellazione facile</span>
+                        <span>✓ Privacy garantita</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
