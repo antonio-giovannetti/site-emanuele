@@ -10,15 +10,14 @@ import {Site, Titolare} from "../../dto/main";
     standalone: true
 })
 export class CFooter {
+    year: number;
     si?: Site;
     titolare: Titolare;
     constructor(private siteService: SiteService, private cdr: ChangeDetectorRef) {
-        siteService.siteInfo().subscribe({next: (data) => {
-            this.si = data;
-            this.cdr.markForCheck();
-        }});
-        this.titolare = siteService.titolare;
-
+        this.si = siteService.site;
+        this.titolare = this.si?.titolare!;
+        this.cdr.markForCheck();
+        this.year = new Date().getFullYear();
     }
 
 }

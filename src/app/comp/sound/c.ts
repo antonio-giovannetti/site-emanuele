@@ -26,6 +26,7 @@ export class CAudio implements OnInit {
     @Input() aud?: string[];
     constructor(private siteService: SiteService, private cdr: ChangeDetectorRef) {
         this.detectUserInteraction();
+        this.play = siteService.site?.settings.autoPlayAudio ?? false;
     }
 
     private detectUserInteraction(): void {

@@ -16,14 +16,18 @@ import {Observable} from "rxjs";
 export class CWebinar implements OnInit {
 
     @Input()
-    webinar$!: Observable<Webinar>;
+    webinar$!: Observable<Webinar> | Webinar;
 
     w?: Webinar;
 
     ngOnInit() {
-        this.webinar$.subscribe(webinar => {
-            this.w = webinar;
-        });
+        if (this.webinar$ instanceof Observable) {
+            this.webinar$.subscribe(webinar => {
+                this.w = webinar;
+            });
+        } else {
+            this.w = this.webinar$;
+        }
     }
 
     onWebinarSubmit(event: Event) {

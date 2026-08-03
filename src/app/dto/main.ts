@@ -11,6 +11,7 @@ export interface Contatto {
 
 
 export interface Titolare {
+    contatto: Contatto;
     name: string;
     image: string;
     description: string;
@@ -43,6 +44,7 @@ export interface Webinar {
     people: number
     extra: string
     args: string[]
+    price: number
 }
 
 export interface ProcessStep {
@@ -50,16 +52,22 @@ export interface ProcessStep {
     description: string;
 }
 
+export interface Settings {
+    autoPlayAudio: boolean;
+    autoPlayVideo: boolean;
+}
 
 export interface Site {
 
+    settings: Settings;
+
     title: string;
     subtitle: string;
-    titolare?: Titolare;
-
+    titolare: Titolare;
+    contatto: Contatto;
     servizi?: Servizio[];
-    webinar?: Webinar[];
-    process?: ProcessStep[];
+    webinars: Webinar[];
+    process: ProcessStep[];
     cert?: Image[];
 
 }

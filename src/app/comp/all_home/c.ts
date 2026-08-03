@@ -26,26 +26,15 @@ import {of} from "rxjs";
 })
 export class CAllHome implements OnInit {
 
-    titolare: Titolare;
     webinars: Webinar[];
 
     constructor(private siteService: SiteService) {
-        this.webinars = siteService.webinars;
+        this.webinars = siteService.site?.webinars!;
 
-        this.titolare = siteService.titolare;
-    }
-
-    @Output()
-    scroll: EventEmitter<string> = new EventEmitter();
-
-    scrollToSection(sectionId: string)  {
-        this.scroll.emit(sectionId);
     }
 
     ngOnInit(): any {
 
     }
-
-    protected readonly of = of;
 
 }

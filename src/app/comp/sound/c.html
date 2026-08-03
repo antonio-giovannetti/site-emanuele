@@ -8,7 +8,7 @@
 }
     <i class="fa-solid fa-forward" (click)="next()"></i>
 </div>
-<audio #audioPlayer>
+<audio #audioPlayer [autoplay]="play">
     <source [src]="_aud" type="audio/mpeg" loop="true" />
 </audio>
 

@@ -16,13 +16,12 @@
     padding: 0;
     background: transparent;
     cursor: pointer;
-}
-
-.cert img {
-    display: block;
-    width: 20vw;
-    height: auto;
-    border-radius: 5px;
+    img {
+        display: block;
+        width: 20vw;
+        height: auto;
+        border-radius: 5px;
+    }
 }
 
 .caption {
@@ -49,14 +48,13 @@
     gap: 0.75rem;
     padding: 1rem;
     background: rgba(0, 0, 0, 0.8);
-}
-
-.cert-lightbox img {
-    max-width: min(100%, 1100px);
-    max-height: 85vh;
-    width: auto;
-    height: auto;
-    border-radius: 5px;
+    img {
+        max-width: min(100%, 1100px);
+        max-height: 85vh;
+        width: auto;
+        height: auto;
+        border-radius: 5px;
+    }
 }
 
 .lightbox-caption {

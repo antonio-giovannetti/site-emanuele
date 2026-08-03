@@ -27,7 +27,7 @@ export class CHeader implements OnInit {
 
     $sub: Subscription;
     constructor(private siteService: SiteService, private cdr: ChangeDetectorRef) {
-        this.titolare = siteService.titolare;
+        this.titolare = siteService.site?.titolare!;
         this.$sub = siteService.onScroll((evt) => {
             this.setParams(evt, false);
         });

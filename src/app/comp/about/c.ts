@@ -19,7 +19,7 @@ export class CAbout implements OnInit {
     titolare: Titolare;
 
     constructor(private siteService: SiteService) {
-        this.titolare = siteService.titolare;
+        this.titolare = siteService.site?.titolare!;
     }
 
     ngOnInit(): any {

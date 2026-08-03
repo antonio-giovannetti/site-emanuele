@@ -18,7 +18,7 @@ export class CContact implements OnInit {
     contatto: Contatto;
 
     constructor(private siteService: SiteService) {
-        this.contatto = siteService.contact;
+        this.contatto = siteService.site?.titolare?.contatto!;
     }
 
     ngOnInit(): any {

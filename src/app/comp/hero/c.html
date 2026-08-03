@@ -1,12 +1,12 @@
 <section id="hero" class="hero">
-    <video class="video-background" autoplay muted loop>
+    <video #videoPlayer class="video-background" [autoplay]="autoplay" muted loop>
         <source src="assets/output.webm" type="video/webm">
     </video>
 
     <div class="container">
         <div class="hero-content">
             <h1>{{ site?.title }}</h1>
-            <p>{{ titolare.description }}</p>
+            <p>{{ site?.titolare!.description }}</p>
             <button class="btn btn-primary" (click)="scrollToSection('contact')">Prenota una sessione</button>
         </div>
     </div>

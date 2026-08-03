@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {RouterModule, RouterOutlet} from '@angular/router';
 import { AppComponent } from './app.component';
@@ -13,7 +13,16 @@ import {appRouterOptions, appRoutes} from "./app.routes";
 import {CProcess} from "./comp/process/c";
 import {CHeader} from "./comp/header/c";
 import {CAudio} from "./comp/sound/c";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {firstValueFrom} from "rxjs";
+import {Site} from "./dto/main";
+
+function preloadSiteConfig(httpClient: HttpClient, siteService: SiteService): () => Promise<Site> {
+  return () => firstValueFrom(httpClient.get<Site>('assets/site.json')).then(site => {
+    siteService.site = site;
+    return site;
+  });
+}
 
 @NgModule({
   declarations: [
@@ -34,7 +43,15 @@ import {HttpClientModule} from "@angular/common/http";
         CHeader,
         CAudio
     ],
-  providers: [SiteService],
+  providers: [
+    SiteService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: preloadSiteConfig,
+      deps: [HttpClient, SiteService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="webinar-grid">
             <div class="webinar-content">
-                <span class="webinar-badge">📺 WEBINAR GRATUITO</span>
+                <span class="webinar-badge">📺 WEBINAR {{!w?.price ? 'GRATUITO' : w?.price + '€'}}</span>
                 <h2>{{w?.title}}</h2>
                 <p>{{w?.description}}</p>
 

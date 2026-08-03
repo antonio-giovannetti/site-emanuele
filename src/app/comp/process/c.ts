@@ -15,12 +15,8 @@ export class CProcess implements OnInit {
     @Input()
     processSteps: ProcessStep[] = [];
 
-
-    titolare: Titolare;
-
     constructor(private siteService: SiteService) {
-        this.processSteps = siteService.processSteps;
-        this.titolare = siteService.titolare;
+        this.processSteps = siteService.site?.process!;
     }
 
     ngOnInit(): any {
