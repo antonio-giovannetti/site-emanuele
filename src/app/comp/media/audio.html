@@ -1,5 +1,5 @@
 <div class="controls">
-    <span>{{_aud?.substring(13)}}</span>
+    <span>{{_aud}}</span>
 
 @if(play) {
     <i class="fa-solid fa-pause" (click)="pauseSound()"></i>
@@ -9,6 +9,6 @@
     <i class="fa-solid fa-forward" (click)="next()"></i>
 </div>
 <audio #audioPlayer [autoplay]="play">
-    <source [src]="_aud" type="audio/mpeg" loop="true" />
+    <source [src]="'assets/audio/'+_aud" type="audio/mpeg" loop="true" />
 </audio>
 

@@ -8,7 +8,7 @@ import {
     ViewChild
 } from "@angular/core";
 import {FormsModule} from "@angular/forms";
-import {Site, Titolare} from "../../dto/main";
+import {Aforisma, Site, Titolare} from "../../dto/main";
 import {SiteService} from "../../service/siteservice";
 import {Title} from "@angular/platform-browser";
 
@@ -22,6 +22,7 @@ import {Title} from "@angular/platform-browser";
 export class CHero implements OnInit {
     site?: Site;
     autoplay: boolean;
+    af?: Aforisma;
 
     @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
     constructor(private siteService: SiteService, private cdr: ChangeDetectorRef) {
@@ -34,7 +35,18 @@ export class CHero implements OnInit {
     }
 
     ngOnInit(): any {
-
+        if (this.site?.aforismi) {
+            const aforismi = this.site?.aforismi?.aforismi;
+            if (!aforismi) {return;}
+            if (this.site?.aforismi.show === "random") {
+                if (aforismi && aforismi.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * aforismi.length);
+                    this.af = aforismi[randomIndex];
+                }
+            } else {
+                this.af = aforismi[this.site?.aforismi.show as number];
+            }
+        }
     }
 
     ngAfterViewInit() {

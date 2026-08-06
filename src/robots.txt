@@ -1,0 +1,79 @@
+# robots.txt for Angular Application with Hash-Based Routing
+# psicoterapeutaceci.eu
+
+# Allow all search engines to crawl public content
+User-agent: *
+Allow: /
+
+# IMPORTANT: Explicitly allow hash-based routes for Googlebot
+# Google supports #! (hashbang) protocol for single-page apps
+User-agent: Googlebot
+Allow: /#!/
+
+# Disallow admin/sensitive areas (customize as needed)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /api/
+Disallow: /.env
+Disallow: /node_modules/
+
+# If you're using Angular's old hash routing without hashbang
+# Google can still crawl these, but hashbang (#!) is recommended
+# User-agent: Googlebot
+# Allow: /#/
+
+# Disallow file types (if needed)
+Disallow: /*.pdf$
+Disallow: /*.doc$
+Disallow: /*.docx$
+
+# CRITICAL: Point to your sitemap
+# Google will crawl your routes from here
+Sitemap: https://psicoterapeutaceci.eu/sitemap.xml
+
+# Optional: Crawl delay to reduce server load
+# Tells bots to wait X seconds between requests
+# Crawl-delay: 1
+
+# Optional: Request rate limit (per 10 seconds)
+# Request-rate: 10/10s
+
+# Specific rules for search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+Request-rate: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+Request-rate: 10/10s
+
+# Block bad bots (optional)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Allow common useful bots
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: linkedinbot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# DEFAULT: Allow everything not explicitly blocked above
+User-agent: *
+Allow: /

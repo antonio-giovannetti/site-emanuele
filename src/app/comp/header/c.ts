@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from "@angular/core";
 import {SiteService} from "../../service/siteservice";
-import {Contatto, Titolare} from "../../dto/main";
+import {Social, Titolare} from "../../dto/main";
 import {FormsModule} from "@angular/forms";
 import {RouterLink} from "@angular/router";
 import {Subscription} from "rxjs";
@@ -24,17 +24,18 @@ export class CHeader implements OnInit {
     activeSection = 'hero';
 
     titolare: Titolare;
+    socialLinks: Social[] = [];
 
     $sub: Subscription;
     constructor(private siteService: SiteService, private cdr: ChangeDetectorRef) {
         this.titolare = siteService.site?.titolare!;
+        this.socialLinks = (siteService.site?.social ?? []).filter((social) => {
+            const name = social.name.toLowerCase();
+            return name === 'facebook' || name === 'instagram';
+        });
         this.$sub = siteService.onScroll((evt) => {
             this.setParams(evt, false);
         });
-    }
-
-    scrollToSection(sectionId: string)  {
-        this.scroll.emit(sectionId);
     }
 
     toggleMenu() {
@@ -55,8 +56,9 @@ export class CHeader implements OnInit {
         this.cdr.markForCheck();
     }
 
-    closeMenu() {
-        this.setParams(this.activeSection, false);
+    scrollToSection(sectionId : string) {
+        this.siteService.scrollToSection(sectionId);
+        // this.setParams(this.activeSection, false);
     }
 
 

@@ -63,19 +63,39 @@ a {
 }
 
 a:hover {
-  color: var(--primary-dark);
+  /*color: var(--primary-dark);*/
+  border-bottom: 2px solid var(--white);
 }
 
 .container {
-  max-width: 70vw;
+  width: 60%;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-@media (max-width: 768px) {
+.video-background {
+  position: absolute;
+  opacity: .2;
+  top: 0;
+//left: 50%;
+//transform: translateX(-50%);
+  z-index: 0;
+  pointer-events: none;
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+@media (max-width: 992px) {
   .container {
+    width: 100%;
     max-width: 100%;
     padding: 0 1rem;
+  }
+  .video-background {
+    width: 100%;
   }
 
   h1 {

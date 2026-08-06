@@ -15,6 +15,7 @@
                     }
                 </div>
 
+                @if (contatto.cell || contatto.tel) {
                 <div class="info-item">
                     <h4><i class="fa-solid fa-phone"></i> Telefono</h4>
                     @if (contatto.cell) {
@@ -24,17 +25,19 @@
                         <div><i class="fa-solid fa-phone"></i><a href="tel:{{contatto.tel}}">{{ contatto.tel }}</a></div>
                     }
                 </div>
+                }
 
+                @if (contatto.email || contatto.pec) {
                 <div class="info-item">
                     <h4><i class="fa-solid fa-envelope"></i> Email</h4>
                     @if (contatto.email) {
-                        <div><i class="fa-solid fa-envelope"></i><a href="mailto:{{contatto.email}}">{{ contatto.email }}</a></div>
+                        <div><i class="fa-regular fa-envelope"></i><a href="mailto:{{contatto.email}}">{{ contatto.email }}</a></div>
                     }
                     @if (contatto.pec) {
                         <div><i class="fa-solid fa-envelope-circle-check"></i><a href="mailto:{{contatto.pec}}">{{ contatto.pec }}</a></div>
                     }
                 </div>
-
+                }
                 <div class="info-item">
                     <h4><i class="fa-regular fa-clock"></i> Orari</h4>
                     @for (orario of contatto.orari; track orario) {
@@ -43,28 +46,78 @@
                 </div>
             </div>
 
-            <form class="contact-form" (ngSubmit)="onSubmit()">
+            <form class="contact-form" (ngSubmit)="onSubmit()" novalidate>
+
                 <div class="form-group">
                     <label for="name">Nome</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" required [disabled]="isSubmitting">
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required [disabled]="isSubmitting">
                 </div>
 
                 <div class="form-group">
                     <label for="phone">Telefono</label>
-                    <input type="tel" id="phone" name="phone">
+                    <input type="tel" id="phone" name="phone" [disabled]="isSubmitting">
                 </div>
 
                 <div class="form-group">
                     <label for="message">Messaggio</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <textarea id="message" name="message" rows="5" required [disabled]="isSubmitting"></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Invia richiesta</button>
+                <!-- CAPTCHA Section -->
+                <div class="form-group captcha-group" [ngClass]="{ 'captcha-error': captchaError }">
+                    <label>Verifica di sicurezza</label>
+                    <div class="captcha-container" [class.disabled]="isSubmitting">
+                        <img 
+                            src="/php/captcha-generator.php"
+                            alt="CAPTCHA" 
+                            class="captcha-image" 
+                            id="captchaImage">
+                        <button 
+                            type="button" 
+                            class="captcha-refresh-btn" 
+                            (click)="refreshCaptcha()"
+                            [disabled]="isSubmitting"
+                            title="Aggiorna CAPTCHA">
+                            <i class="fa-solid fa-rotate-right"></i></button>
+                    </div>
+                    <input 
+                        type="text" 
+                        id="captcha" 
+                        name="captcha" 
+                        placeholder="Inserisci il codice sopra" 
+                        maxlength="6" 
+                        required
+                        [disabled]="isSubmitting"
+                        class="captcha-input">
+                    <small class="helper-text">Inserisci il testo mostrato nell'immagine sopra</small>
+                </div>
+                <!-- Status Message -->
+                @if (message) {
+                    <div class="form-message" [ngClass]="'message-' + message.type">
+                        <i [ngClass]="{
+                            'fa-solid fa-check-circle': message.type === 'success',
+                            'fa-solid fa-exclamation-circle': message.type === 'error',
+                            'fa-solid fa-info-circle': message.type === 'info'
+                        }"></i>
+                        {{ message.text }}
+                    </div>
+                }
+
+                <button 
+                    type="submit" 
+                    class="btn btn-primary"
+                    [disabled]="isSubmitting">
+                    @if (isSubmitting) {
+                        <i class="fa-solid fa-spinner fa-spin"></i> Invio in corso...
+                    } @else {
+                        Invia richiesta
+                    }
+                </button>
             </form>
         </div>
     </div>

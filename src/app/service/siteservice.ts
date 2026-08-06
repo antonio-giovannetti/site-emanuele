@@ -1,7 +1,9 @@
-import {Injectable} from "@angular/core";
-import {Contatto, Image, ProcessStep, Servizio, Site, Titolare, Webinar} from "../dto/main";
+import {inject, Injectable} from "@angular/core";
+import {Location} from "@angular/common";
+import {Contatto, Media, ProcessStep, Servizio, Site, Titolare, Webinar} from "../dto/main";
 import {Observable, Subject, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {ResolveFn, Router} from "@angular/router";
 
 @Injectable({
     providedIn: 'root',
@@ -10,22 +12,71 @@ export class SiteService {
 
     private _site?: Site;
     private $scrollSub: Subject<string> = new Subject<string>();
-    public constructor(private http: HttpClient) {
+    public constructor(private http: HttpClient, private router: Router, private location: Location) {
     }
 
     onScroll(cb: (sectionId: string) => void): Subscription {
         return this.$scrollSub.subscribe(cb);
     }
 
-    scrollToSection(sectionId: string) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-            this.$scrollSub.next(sectionId);
-            // this.headerComponent?.setParams(sectionId, false);
-            // this.activeSection = sectionId;
-            // this.isMenuOpen = false;
+    public sectionToRoutePath(sectionId: string): string {
+        switch (sectionId) {
+            case 'about':
+            case 'webinar':
+            case 'contact':
+                return sectionId;
+            case 'services':
+                return 'services';
+            case 'hero':
+            default:
+                return 'hero';
         }
+    }
+
+    public routePathToSection(routePath: string): string | undefined {
+        const normalized = routePath.split('?')[0].split('#')[0].replace(/^\/+/, '');
+        if (normalized === '' || normalized === 'hero') {
+            return 'hero';
+        }
+        if (normalized === 'about' || normalized === 'webinar' || normalized === 'contact') {
+            return normalized;
+        }
+        if (normalized === 'service' || normalized === 'services' || normalized === 'section') {
+            return 'services';
+        }
+        return undefined;
+    }
+
+    private scrollSection(sectionId: string) {
+        const element = sectionId === 'hero' ? document.body : document.getElementById(sectionId);
+        if (!element) {
+            return;
+        }
+
+        element.scrollIntoView({behavior: 'smooth'});
+        this.$scrollSub.next(sectionId);
+    }
+
+    public scrollToSectionOnly(sectionId: string) {
+        this.scrollSection(sectionId);
+    }
+
+    scrollToSection(sectionId: string) {
+        const routePath = this.sectionToRoutePath(sectionId);
+
+        const currentPath = this.router.url.split('?')[0];
+        const targetPath = '/' + routePath;
+        if (currentPath !== targetPath) {
+            void this.router.navigate([routePath], {replaceUrl: true}).then((navigated) => {
+                if (!navigated) {
+                    return;
+                }
+                setTimeout(() => this.scrollSection(sectionId));
+            });
+            return;
+        }
+
+        this.scrollSection(sectionId);
     }
 
 
@@ -63,43 +114,6 @@ export class SiteService {
         }]
     }
 
-    get certs(): Image[] {
-
-        return [{
-            src: 'assets/images/cert/mbsr.jpg',
-            caption: 'Percorso personale di riduzione dello Stress basato sulla Mindfulness MBSR , gruppo Sperling APL Milano',
-            date: new Date("2024-01-01")
-        }, {
-            src: 'assets/images/cert/mindufullness-768x438.jpg',
-            caption: 'Iscrizione al registro Nazionale Mindfulness N.° 3115',
-            date: new Date("2024-02-01")
-        }, {
-            src: 'assets/images/cert/Federmindufullness-684x1024.jpg',
-            caption: 'Iscrizione presso la Federmindufullness',
-            date: new Date("2024-02-01")
-        }, {
-            src: 'assets/images/cert/becoming_presence-768x539.jpg',
-            caption: 'Residenziale di Mindfulness a cura del gruppo Sperling APL Milano , presso la casa Don – Ispra.',
-            date: new Date("2024-02-01")
-        }, {
-            src: 'assets/images/cert/diploma-3-1024x713.jpg',
-            caption: 'Diploma di Specializzazione quadriennale in Psicoterapia Cognitivo-Comportamentale ed Intervento Psicosociale',
-            date: new Date("2024-02-01")
-        }, {
-            src: 'assets/images/cert/3-681x1024.jpeg',
-            caption: 'Iscrizione alla federmindfulness , Mindfulness Basic Training.',
-            date: new Date("2024-02-01")
-        }, {
-            src: 'assets/images/cert/4.jpeg',
-            caption: 'Corso di formazione Spazio Iris, relatore Prof. Fabrizio Didonna.',
-            date: new Date("2024-02-01")
-        }, {
-            src: 'assets/images/cert/5-768x535.jpeg',
-            caption: 'Corso MBSR Theacher, Gruppo Sperling APL Milano',
-            date: new Date("2024-02-01")
-        }]
-    }
-
     set site(s: Site) {
         this._site = s;
     }
@@ -108,3 +122,11 @@ export class SiteService {
         return this._site;
     }
 }
+
+
+
+export const webinarResolver: ResolveFn<Webinar> = (route, state) => {
+    const siteService = inject(SiteService);
+    const wTitle = route.paramMap.get('id');
+    return siteService.site!.webinars.filter(w => w.title === wTitle)[0];
+};

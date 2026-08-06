@@ -1,1 +1,152 @@
-{ "title": "Benvenuto nel mio studio", "subtitle": "Accompagnamento professionale verso il benessere psicologico" }
+{
+  "settings": {
+    "autoPlayAudio": false,
+    "autoPlayVideo": true
+  },
+  "aforismi": {
+    "show": 0,
+    "aforismi": [
+      {
+        "text": "I pensieri negativi sono come le nuvole che passano, ma non sono realtà. La realtà è ciò noi percepiamo, e la nostra percezione è filtrata dai nostri pensieri",
+        "author": "Aaron Beck"
+    },
+    {
+      "text": "La mente è come un paracadute. Funziona solo se si apre.",
+      "author": "Albert Einstein"
+    }
+  ]},
+  "social": [
+    {
+      "name": "Facebook",
+      "icon": "fa-brands fa-facebook-f",
+      "link": "https://www.facebook.com/EmanueleCeciPsicologoPsicoterapeuta"
+    },
+    {
+      "name": "Instagram",
+      "icon": "fa-brands fa-instagram",
+      "link": "https://www.instagram.com/studiodipsicologiaceci"
+    }
+  ],
+  "webinars": [{
+    "form": false,
+    "type": "WEBINAR",
+    "title": "Come superare l'ansia e ritrovare la serenità",
+    "description": "Un webinar esclusivo con il Dr. Emanuele Ceci per apprendere tecniche pratiche e evidence-based per gestire l'ansia nel quotidiano.",
+    "utcDate": "2026-07-28T16:00:00Z",
+    "people": 100,
+    "price": 0,
+    "extra": "Riceverai una guida PDF \"5 tecniche anti-ansia\"",
+    "args": [
+      "Tecniche di respirazione basate su evidence",
+      "Come identificare i trigger dell'ansia",
+      "Strategie CBT per gestire pensieri negativi",
+      "Esercizi pratici da fare a casa",
+      "Quando cercare aiuto professionale"
+    ]
+  },
+    {
+      "form": false,
+      "location": {
+        "indirizzo1": "Via Civitavecchia 3",
+        "indirizzo2": "03033 Arpino(FR)",
+        "indirizzo3": "Piscina Sunrise Crest"
+      },
+      "type": "LIVE",
+      "title": "Mindfulness al tramonto",
+      "description": "Un incontro esclusivo con il Dr. Emanuele Ceci e il Dr. Massimo Vidimar per apprendere tecniche pratiche e evidence-based per gestire l'ansia nel quotidiano.",
+      "utcDate": "2026-08-04T15:30:00Z",
+      "people": null,
+      "media": [{
+        "type": "VIDEO",
+        "src": "assets/video/1.mp4",
+        "caption": "",
+        "date": "2024-01-01"
+      }],
+      "price": null,
+      "extra": null
+    }],
+  "process": [
+    {
+      "title": "Primo colloquio",
+      "description": "Un incontro conoscitivo senza impegno per esplorare le tue esigenze e valutare la compatibilità."
+    },
+    {
+      "title": "Valutazione",
+      "description": "Approfondimento della situazione attraverso colloqui mirati per definire gli obiettivi terapeutici."
+    },
+    {
+      "title": "Percorso terapeutico",
+      "description": "Lavoro strutturato insieme per raggiungere i tuoi obiettivi con tecniche evidence-based."
+    },
+    {
+      "title": "Consolidamento",
+      "description": "Consolidamento dei risultati e sviluppo di strategie autonome per il mantenimento del benessere."
+    }
+  ],
+  "titolare": {
+    "certs": [{
+      "type": "IMAGE",
+      "src": "assets/images/cert/mbsr.jpg",
+      "caption": "Percorso personale di riduzione dello Stress basato sulla Mindfulness MBSR , gruppo Sperling APL Milano",
+      "date": "2024-01-01"
+    }, {
+      "type": "IMAGE",
+      "src": "assets/images/cert/mindufullness-768x438.jpg",
+      "caption": "Iscrizione al registro Nazionale Mindfulness N.° 3115",
+      "date": "2024-02-01"
+    }, {
+      "type": "IMAGE",
+      "src": "assets/images/cert/Federmindufullness-684x1024.jpg",
+      "caption": "Iscrizione presso la Federmindufullness",
+      "date": "2024-02-01"
+    }, {
+      "type": "IMAGE",
+      "src": "assets/images/cert/becoming_presence-768x539.jpg",
+      "caption": "Residenziale di Mindfulness a cura del gruppo Sperling APL Milano , presso la casa Don – Ispra.",
+      "date": "2024-02-01"
+    }, {
+      "type": "IMAGE",
+      "src": "assets/images/cert/diploma-3-1024x713.jpg",
+      "caption": "Diploma di Specializzazione quadriennale in Psicoterapia Cognitivo-Comportamentale ed Intervento Psicosociale",
+      "date": "2024-02-01"
+    }, {
+      "type": "IMAGE",
+      "src": "assets/images/cert/3-681x1024.jpeg",
+      "caption": "Iscrizione alla federmindfulness , Mindfulness Basic Training.",
+      "date": "2024-02-01"
+    }, {
+      "type": "IMAGE",
+      "src": "assets/images/cert/4.jpeg",
+      "caption": "Corso di formazione Spazio Iris, relatore Prof. Fabrizio Didonna.",
+      "date": "2024-02-01"
+    }, {
+      "type": "IMAGE",
+      "src": "assets/images/cert/5-768x535.jpeg",
+      "caption": "Corso MBSR Theacher, Gruppo Sperling APL Milano",
+      "date": "2024-02-01"
+    }],
+    "contatto": {
+      "indirizzo1": "Via Morrone 62 ",
+      "indirizzo2": "03030 Pescosolido (FR)",
+      "indirizzo3": "Italia",
+      "tel": "",
+      "cell": "+393773993700 ",
+      "email": "studiodipsicologiaceci@gmail.com",
+      "pec": "emanuelececi79@pec.it",
+      "orari": ["Lun-Ven 9:00-18:00"]
+    },
+    "name": "Dr. Emanuele Ceci",
+    "sub1": "Psicoterapeuta clinico specializzato in terapia cognitivo-comportamentale",
+    "sub2": "Sono uno psicoterapeuta con esperienza nel supportare individui e coppie attraverso momenti di difficoltà emotiva. Il mio approccio è basato sull'ascolto empatico, la comprensione profonda e l'utilizzo di tecniche evidence-based per facilitare il cambiamento positivo.",
+    "image": "assets/1-975x1024.jpeg",
+    "spec": ["Mindfulness", "Ansia e disturbi d'ansia", "Depressione e disturbi dell'umore", "Terapia di coppia", "Gestione dello stress e burnout", "Trauma e PTSD"],
+    "formazione": ["Psicoterapeuta Cognitivo-comportamentale ed intervento psicosociale",
+      "Psicologo",
+      "CPS Infermiere presso la Asl di Frosinone (Dipartimento di salute mentale e delle dipendenze)"],
+    "description": "Psicoterapeuta Cognitivo-comportamentale",
+    "ordine": "Ordine degli psicologi del Lazio nella sezione A dell'Albo dal 25/01/2021 con il n. 26142",
+    "linkOrdine": "https://ordinepsicologilazio.it/albo/iscrizione-26142"
+  },
+  "title": "Benvenuto nel mio studio",
+  "subtitle": "Accompagnamento professionale verso il benessere psicologico"
+}

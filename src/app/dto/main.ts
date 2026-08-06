@@ -13,12 +13,16 @@ export interface Contatto {
 export interface Titolare {
     contatto: Contatto;
     name: string;
+    sub1: string;
+    sub2?: string;
     image: string;
     description: string;
     email?: string;
     ordine: string;
+    linkOrdine: string;
     formazione: string[]
     spec: string[]
+    certs: Media[]
 }
 
 
@@ -29,22 +33,32 @@ export interface Servizio {
     cost?: number;
 }
 
-export interface Image {
+export interface Media {
     src?: string;
     caption: string;
     date?: Date;
+    type: 'VIDEO' | 'IMAGE' |' AUDIO'
+}
+
+export interface Location {
+    indirizzo1: string;
+    indirizzo2: string;
+    indirizzo3: string;
 }
 
 
-
 export interface Webinar {
+    type: 'WEBINAR' | 'LIVE';
+    location?: Location;
     title: string;
     description: string;
+    media: Media[];
     utcDate: Date
     people: number
     extra: string
     args: string[]
     price: number
+    form: boolean
 }
 
 export interface ProcessStep {
@@ -57,10 +71,29 @@ export interface Settings {
     autoPlayVideo: boolean;
 }
 
+export interface WrapperAforisma {
+    show: 'random' | number;
+    aforismi?: Aforisma[];
+}
+
+
+export interface Aforisma {
+    text: string;
+    author: string;
+}
+
+export interface Social {
+    name: string;
+    icon: string;
+    link: string;
+}
+
+
 export interface Site {
 
     settings: Settings;
-
+    social: Social[];
+    aforismi?: WrapperAforisma;
     title: string;
     subtitle: string;
     titolare: Titolare;
@@ -68,7 +101,7 @@ export interface Site {
     servizi?: Servizio[];
     webinars: Webinar[];
     process: ProcessStep[];
-    cert?: Image[];
+    cert?: Media[];
 
 }
 

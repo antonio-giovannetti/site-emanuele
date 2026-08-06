@@ -14,8 +14,8 @@ import {FormsModule} from "@angular/forms";
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'c-audio',
-    templateUrl: './c.html',
-    styleUrls: ['./c.scss'],
+    templateUrl: './audio.html',
+    styleUrls: ['./audio.scss'],
     standalone: true
 })
 export class CAudio implements OnInit {

@@ -2,7 +2,7 @@
     <h2>Le mie certificazioni</h2>
 
 
-    <div class="certs container">
+    <div class="certs">
     @for (cert of certs; track cert) {
             <button class="cert" type="button" (click)="openCert(cert)">
                 <img [src]="cert.src" [alt]="cert.caption">

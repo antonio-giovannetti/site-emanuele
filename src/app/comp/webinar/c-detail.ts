@@ -1,33 +1,31 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from "@angular/core";
-import {Webinar} from "../../dto/main";
+import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
 import {DatePipe} from "@angular/common";
-import {Observable} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
+import {Webinar} from "../../dto/main";
+import {CVideo} from "../media/video";
+import {Title} from "@angular/platform-browser";
+import {SiteService} from "../../service/siteservice";
 
 @Component({
-    selector: 'c-webinar',
-    templateUrl: './c.html',
-    styleUrls: ['./c.scss'],
+    selector: 'c-webinar-detail',
+    templateUrl: './c-detail.html',
+    styleUrls: ['./c-detail.scss'],
     imports: [
-        DatePipe
+        DatePipe,
+        CVideo
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true
 })
-export class CWebinar implements OnInit {
+export class CWebinarDetail implements OnInit {
+    w!: Webinar;
 
-    @Input()
-    webinar$!: Observable<Webinar> | Webinar;
-
-    w?: Webinar;
+    constructor(private activatedRoute: ActivatedRoute, private titleService: Title, private siteService: SiteService) {
+    }
 
     ngOnInit() {
-        if (this.webinar$ instanceof Observable) {
-            this.webinar$.subscribe(webinar => {
-                this.w = webinar;
-            });
-        } else {
-            this.w = this.webinar$;
-        }
+        this.w = this.activatedRoute.snapshot.data['webinar'];
+        this.titleService.setTitle(`${this.siteService?.site?.titolare.name} - ${this.w.title}`);
     }
 
     onWebinarSubmit(event: Event) {
@@ -51,5 +49,4 @@ export class CWebinar implements OnInit {
 
         form.reset();
     }
-
 }

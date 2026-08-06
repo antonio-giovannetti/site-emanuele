@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from "@angular/core";
 import {SiteService} from "../../service/siteservice";
-import {Image} from "../../dto/main";
+import {Media} from "../../dto/main";
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -11,13 +11,13 @@ import {Image} from "../../dto/main";
 })
 export class CCert {
 
-    certs: Image[];
-    selectedCert: Image | null = null;
+    certs: Media[];
+    selectedCert: Media | null = null;
 
     constructor(private siteService: SiteService) {
-        this.certs = siteService.certs;
+        this.certs = siteService.site?.titolare.certs || [];
     }
-    openCert(cert: Image): void {
+    openCert(cert: Media): void {
         this.selectedCert = cert;
     }
 

@@ -2,13 +2,20 @@
 
 <header class="navbar">
     <div class="container navbar-container">
-        <div class="logo"><a [routerLink]="['/']">{{ titolare.name }}</a></div>
+        <div class="logo"><a [routerLink]="['/hero']">{{ titolare.name }}</a></div>
         <nav [class.active]="isMenuOpen" class="nav-menu">
-            <a [routerLink]="['/']" fragment="hero" (click)="closeMenu()" [class.active]="activeSection === 'hero'" class="nav-link">Home</a>
-            <a [routerLink]="['/']" fragment="about" (click)="closeMenu()" [class.active]="activeSection === 'about'" class="nav-link">Chi sono</a>
-            <a [routerLink]="['/']" fragment="webinar" (click)="closeMenu()" [class.active]="activeSection === 'webinar'" class="nav-link nav-webinar">Webinar</a>
-            <a [routerLink]="['/']" fragment="services" (click)="closeMenu()" [class.active]="activeSection === 'services'" class="nav-link">Servizi</a>
-            <a [routerLink]="['/']" fragment="contact" (click)="closeMenu()" [class.active]="activeSection === 'contact'" class="nav-link">Contatti</a>
+            <a [routerLink]="['/hero']" [class.active]="activeSection === 'hero'" class="nav-link">Home</a>
+            <a [routerLink]="['/about']" [class.active]="activeSection === 'about'" class="nav-link">Chi sono</a>
+            <a [routerLink]="['/webinar']" [class.active]="activeSection === 'webinar'" class="nav-link nav-webinar">Webinar</a>
+            <a [routerLink]="['/services']" [class.active]="activeSection === 'services'" class="nav-link">Servizi</a>
+            <a [routerLink]="['/contact']" [class.active]="activeSection === 'contact'" class="nav-link">Contatti</a>
+            <div class="nav-social">
+                @for (social of socialLinks; track social.link) {
+                    <a [href]="social.link" [attr.aria-label]="social.name" class="nav-social-link" rel="noopener noreferrer" target="_blank">
+                        <i class="{{social.icon}}"></i>
+                    </a>
+                }
+            </div>
         </nav>
         <button class="hamburger" (click)="toggleMenu()" [class.active]="isMenuOpen">
             <span></span>

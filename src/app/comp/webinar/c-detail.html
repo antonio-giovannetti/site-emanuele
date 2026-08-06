@@ -1,36 +1,62 @@
 <section id="webinar" class="webinar">
+    <c-video [src]="'7521690-hd_1920_1080_25fps.mp4.webm'" ></c-video>
+    <div class="container">
+        <h2 class="webinar-section-title">Incontro</h2>
+    </div>
+
     <div class="container">
         <div class="webinar-grid">
             <div class="webinar-content">
-                <span class="webinar-badge">📺 WEBINAR {{!w?.price ? 'GRATUITO' : w?.price + '€'}}</span>
-                <h2>{{w?.title}}</h2>
-                <p>{{w?.description}}</p>
-
+                @if (w.type === 'WEBINAR') {
+                    <span class="webinar-badge">📺 WEBINAR {{!w.price ? 'GRATUITO' : w.price + '€'}}</span>
+                }
+                <h2>{{w.title}}</h2>
+                <p>{{w.description}}</p>
+                @if (w.media) {
+                    @for (m of w.media!; track m) {
+                        @if (m?.type === 'IMAGE') {
+                            <img [src]="m?.src" [alt]="m?.caption">
+                        } @else if (m?.type === 'VIDEO') {
+                            <video [src]="m?.src" controls></video>
+                        }
+                    }
+                }
                 <div class="webinar-details">
                     <div class="detail-item">
-                        <strong><i class="fa-regular fa-calendar-days"></i> Data: </strong>{{w?.utcDate |  date: 'EEEE d MMMM yyyy':'':'it'}}
+                        <strong><i class="fa-regular fa-calendar-days"></i> Data: </strong>{{w.utcDate |  date: 'EEEE d MMMM yyyy':'':'it'}}
                     </div>
                     <div class="detail-item">
-                        <strong><i class="fa-regular fa-clock"></i> Ora:</strong> {{w?.utcDate |  date: 'HH:mm':'':'it'}}
+                        <strong><i class="fa-regular fa-clock"></i> Ora:</strong> {{w.utcDate |  date: 'HH:mm':'':'it'}}
                     </div>
-                    <div class="detail-item">
-                        <strong><i class="fa-solid fa-people-group"></i> Posti:</strong> Limitati a {{w?.people}} partecipanti
-                    </div>
-                    <div class="detail-item">
-                        <strong><i class="fa-solid fa-gift"></i> Bonus:</strong> {{w?.extra}}
-                    </div>
-                </div>
+                    @if (w.type === 'LIVE') {
+                        <div class="detail-item">
+                            <strong><i class="fa-solid fa-location-dot"></i> Luogo:</strong> {{w.location?.indirizzo1}}, {{w.location?.indirizzo2}}, {{w.location?.indirizzo3}}
+                        </div>
+                    }
 
-                <div class="webinar-benefits">
-                    <h3>Cosa imparerai:</h3>
-                    <ul>
-                        @for(d of w?.args; track d) {
-                            <li>{{ d }}</li>
-                        }
-                    </ul>
+                    @if (w.people!=null) {
+                        <div class="detail-item">
+                            <strong><i class="fa-solid fa-people-group"></i> Posti:</strong> Limitati a {{w.people}} partecipanti
+                        </div>
+                    }
+                    @if (w.extra!=null) {
+                        <div class="detail-item">
+                            <strong><i class="fa-solid fa-gift"></i> Bonus:</strong> {{w.extra}}
+                        </div>
+                    }
                 </div>
+                @if (!!w!.args && w!.args.length > 0) {
+                    <div class="webinar-benefits">
+                        <h3>Cosa imparerai:</h3>
+                        <ul>
+                            @for(d of w.args; track d) {
+                                <li>{{ d }}</li>
+                            }
+                        </ul>
+                    </div>
+                }
             </div>
-
+            @if (w.form) {
             <div class="webinar-form">
                 <div class="form-card">
                     <h3>Iscriviti gratuitamente</h3>
@@ -85,7 +111,7 @@
                         <span>✓ Privacy garantita</span>
                     </div>
                 </div>
-            </div>
+            </div>}
         </div>
     </div>
 </section>

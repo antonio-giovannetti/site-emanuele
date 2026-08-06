@@ -63,7 +63,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "psicoterapeuta-studio:build"
+            "buildTarget": "psicoterapeuta-studio:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {

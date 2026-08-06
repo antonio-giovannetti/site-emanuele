@@ -4,9 +4,8 @@
 <!-- About Section -->
 <c-about />
 
-@for(w of webinars; track w ) {
-    <c-webinar [webinar$]="w" />
-}
+
+<c-webinar-summary [webinar]="webinars" />
 
 
 

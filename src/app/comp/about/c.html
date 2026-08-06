@@ -1,6 +1,13 @@
 <section id="about" class="about">
     <div class="container">
         <h2>Chi sono</h2>
+        <div class="btn-container">
+            <span class="btn btn-primary"><i class="fa-solid fa-building-columns"></i><a [routerLink]="['/cert']">Certificazioni</a></span>
+            <span class="btn btn-primary"><i class="fa-solid fa-award"></i><a target="_blank" href="/assets/curriculum.docx" >Curriculum</a></span>
+            @if (titolare.linkOrdine) {
+                <span class="btn btn-primary"><i class="fa-solid fa-stamp"></i><a target="_blank" href="{{titolare.linkOrdine}}" >Ordine degli psicologi</a></span>
+            }
+        </div>
         <div class="about-grid">
             <div class="about-image">
                 <div class="profile-placeholder">
@@ -12,10 +19,10 @@
                 </div>
             </div>
             <div class="about-content">
-                <h3>{{titolare.name}}<span class="cert btn btn-primary"><i class="fa-solid fa-award"></i><a [routerLink]="['cert']">Certificazioni</a></span></h3>
+                <h3>{{titolare.name}}</h3>
 
-                <p><strong>Psicoterapeuta clinico specializzata in terapia cognitivo-comportamentale</strong></p>
-                <p>Sono uno psicoterapeuta con esperienza nel supportare individui e coppie attraverso momenti di difficoltà emotiva. Il mio approccio è basato sull'ascolto empatico, la comprensione profonda e l'utilizzo di tecniche evidence-based per facilitare il cambiamento positivo.</p>
+                <p><strong>{{titolare.sub1}}</strong></p>
+                <p>{{titolare.sub2}}</p>
                 <p>Specializzato in:</p>
                 <ul>
                     @for (tit of titolare.spec; track tit) {

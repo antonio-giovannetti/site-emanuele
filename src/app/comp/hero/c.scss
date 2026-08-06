@@ -1,23 +1,55 @@
 .hero {
     //background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, var(--primary-color) 35%, var(--accent-color) 100%);
-    background: #FFFF;
-    background: radial-gradient(circle,rgba(255, 255, 255, 1) 0%, rgba(90, 74, 126, 1) 90%, rgba(61, 47, 92, 1) 100%);
+    //background: radial-gradient(circle,rgba(255, 255, 255, 1) 60%, rgba(90, 74, 126, 1) 90%, rgba(61, 47, 92, 1) 100%);
     color: var(--text-dark);
-    height: 50vh;
     text-align: center;
     position: relative;
     overflow: hidden;
-    min-height: 500px;
+    padding-top: 80px;
+    padding-bottom: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    .container {
-        position: relative;
-        z-index: 1;
+
+    &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 90px;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), var(--light-bg));
+        pointer-events: none;
+        z-index: 0;
     }
 }
 
+.hero-quote {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    max-width: 360px;
+    text-align: left;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-style: italic;
+    color: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+}
+
+.hero-quote-text {
+    font-size: 1rem;
+    line-height: 1.35;
+    margin: 0 0 0.35rem 0;
+}
+
+.hero-quote-author {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
 .hero-content {
+    position: relative;
+    z-index: 1;
     h1 {
         color: var(--black);
         margin-bottom: 1.5rem;
@@ -34,7 +66,12 @@
 }
 
 @media (max-width: 768px) {
+    .video-background {
+        width: 100%;
+    }
+
     .hero-content {
+        top: 3rem;
         h1 {
             font-size: 1.8rem;
         }
@@ -44,22 +81,30 @@
         }
     }
 
+    .hero-quote {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0.75rem;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 1rem;
+        box-sizing: border-box;
+    }
+
+    .hero-quote-text {
+        font-size: 0.85rem;
+    }
+
+    .hero-quote-author {
+        font-size: 0.8rem;
+    }
+
     .hero {
         padding: 60px 0;
-    }
-}
 
-.video-background {
-    position: absolute;
-    opacity: .2;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 0;
-    pointer-events: none;
-    width: auto;
-    height: 100%;
-    object-fit: contain;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+        &::after {
+            height: 60px;
+        }
+    }
 }
