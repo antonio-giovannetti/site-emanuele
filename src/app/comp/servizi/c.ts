@@ -17,7 +17,7 @@ export class CServizio implements OnInit {
     @Input() servizi?: Servizio[];
 
     constructor(private siteService: SiteService) {
-        this.servizi = siteService.servizi;
+        this.servizi = siteService.site?.servizi;
 
     }
     ngOnInit() {

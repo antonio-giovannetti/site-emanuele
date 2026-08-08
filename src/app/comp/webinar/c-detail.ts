@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
 import {DatePipe} from "@angular/common";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, NavigationExtras, Route, Router} from "@angular/router";
 import {Webinar} from "../../dto/main";
 import {CVideo} from "../media/video";
 import {Title} from "@angular/platform-browser";
@@ -10,6 +10,7 @@ import {SiteService} from "../../service/siteservice";
     selector: 'c-webinar-detail',
     templateUrl: './c-detail.html',
     styleUrls: ['./c-detail.scss'],
+    providers: [DatePipe],
     imports: [
         DatePipe,
         CVideo
@@ -20,12 +21,27 @@ import {SiteService} from "../../service/siteservice";
 export class CWebinarDetail implements OnInit {
     w!: Webinar;
 
-    constructor(private activatedRoute: ActivatedRoute, private titleService: Title, private siteService: SiteService) {
+    constructor(private activatedRoute: ActivatedRoute,
+                private datePipe: DatePipe,
+                private router: Router,
+                private titleService: Title,
+                private siteService: SiteService) {
     }
 
     ngOnInit() {
         this.w = this.activatedRoute.snapshot.data['webinar'];
+
         this.titleService.setTitle(`${this.siteService?.site?.titolare.name} - ${this.w.title}`);
+    }
+
+    requestInfo(w: Webinar): void {
+        const formattedDate = this.datePipe.transform(w.utcDate, 'EEEE d MMMM yyyy', undefined, 'it-IT');
+        const ne: NavigationExtras = {info: "no_scroll", queryParams: { subject: `${w.title} - ${formattedDate}`}}
+        this.router.navigate(['contact'], ne);
+    }
+
+    isWebinarExpired(w: Webinar) {
+        return this.siteService.isWebinarExpired(w);
     }
 
     onWebinarSubmit(event: Event) {

@@ -16,7 +16,6 @@ import {Location} from "@angular/common";
 export class AppComponent implements OnInit {
   // title = 'Studio Psicoterapeuta';
   auds: string[] = [];
-  servizi: Servizio[] = [];
   site?: Site;
   private readonly sectionIds = ['hero', 'about', 'webinar', 'services', 'contact'];
   private lastUrlSection?: string;
@@ -25,7 +24,6 @@ export class AppComponent implements OnInit {
 
   constructor(private siteService: SiteService, private titleService: Title, private cdr: ChangeDetectorRef, private router: Router, private location: Location) {
       this.site = siteService.site;
-      this.servizi = siteService.servizi;
       this.auds = [
       'fatbunny-relax-491785.mp3',
     'paulyudin-ambient-relax-113444.mp3','synclabmusic-free-music-relax-425870.mp3',
@@ -70,7 +68,7 @@ export class AppComponent implements OnInit {
 
   @HostListener('window:scroll')
   onWindowScroll() {
-    this.updateActiveSectionFromScroll();
+    // this.updateActiveSectionFromScroll();
   }
 
   private updateActiveSectionFromScroll() {
@@ -90,6 +88,7 @@ export class AppComponent implements OnInit {
     if (this.isSyncingSectionFromRoute) {return;}
 
     const currentPath = this.router.url.split('?')[0];
+    console.log(`currentPath: ${currentPath}`);
     if (!this.siteService.routePathToSection(currentPath)) {
       return;
     }
@@ -97,8 +96,12 @@ export class AppComponent implements OnInit {
     if (activeSection !== this.lastUrlSection) {
       this.lastUrlSection = activeSection;
       const routePath = this.siteService.sectionToRoutePath(activeSection);
-      const urlTree = this.router.createUrlTree([routePath]);
+      const currentQueryParams = this.router.parseUrl(this.router.url).queryParams;
+      const urlTree = this.router.createUrlTree([routePath], {
+        queryParams: currentQueryParams,
+      });
       const nextUrl = this.router.serializeUrl(urlTree);
+      console.log(`nextUrl: ${nextUrl}`);
       if (this.location.path(true) !== nextUrl) {
         this.location.replaceState(nextUrl);
       }
@@ -123,6 +126,4 @@ export class AppComponent implements OnInit {
     });
   }
 
-
-  protected readonly of = of;
 }

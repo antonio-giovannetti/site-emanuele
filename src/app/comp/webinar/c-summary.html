@@ -1,15 +1,18 @@
-<section id="webinar" class="webinar">
-    <div class="container">
-        <h2 class="webinar-section-title">Incontri</h2>
-    </div>
-    <div class="container">
-        <div class="summary-carousel">
-            @for(w of webinar; track w ) {
-                <div class="summary-card summary" (click)="navigate(w)" [class.expired]="isExpired(w!)">
-                    <h4>{{w?.title}}</h4>
-                    <span class="date">{{w?.utcDate |  date: 'EEEE d MMMM yyyy':'':'it'}}</span>
-                </div>
-            }
+    <section id="webinar" class="webinar">
+        <div class="container">
+            <h2 class="webinar-section-title">Incontri</h2>
         </div>
-    </div>
-</section>
+        <div class="container">
+            <div #summaryCarousel class="summary-carousel">
+                @for(w of webinar; track w ) {
+                    <div class="summary-card summary"
+                         (click)="navigate(w!)"
+                         [class.expired]="isWebinarExpired(w!)"
+                         [class.highlight]="!isWebinarExpired(w!)">
+                        <h4>{{w?.title}}</h4>
+                        <span class="date">{{w?.utcDate |  date: 'EEEE d MMMM yyyy':'':'it'}}</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>

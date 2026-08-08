@@ -62,6 +62,18 @@ export class SiteService {
     }
 
     scrollToSection(sectionId: string) {
+        this.scrollToSectionRoute(sectionId)
+    }
+    private scrollToSectionFragment(sectionId: string) {
+        this.router.navigate([], {fragment: sectionId, replaceUrl: true}).then((navigated) => {
+            if (!navigated) {
+                return;
+            }
+        });
+    }
+
+
+    private scrollToSectionRoute(sectionId: string) {
         const routePath = this.sectionToRoutePath(sectionId);
 
         const currentPath = this.router.url.split('?')[0];
@@ -78,42 +90,6 @@ export class SiteService {
 
         this.scrollSection(sectionId);
     }
-
-
-    get servizi(): Servizio[] {
-        return [{
-            icon: 'fa-solid fa-person',
-            title: "Terapia individuale",
-            description: "Sessioni personalizzate per affrontare ansia, depressione, stress e difficoltà emotive con tecniche scientificamente provate.",
-            cost: 80
-        }, {
-            icon: 'fa-solid fa-people-arrows',
-            title: "Terapia di coppia",
-            description: "Supporto professionale per migliorare la comunicazione, risolvere conflitti e rafforzare la relazione di coppia.",
-            cost: 100
-        }, {
-            icon: 'fa-solid fa-question',
-            title: "Consulenza psicologica",
-            description: "Brevi percorsi consulenziali per questioni specifiche e presa di decisioni consapevole.",
-            cost: 80
-        }, {
-            icon: 'fa-solid fa-code-branch',
-            title: "Valutazione psicologica",
-            description: "Valutazioni cliniche approfondite per comprendere il profilo psicologico e definire il percorso terapeutico.",
-            cost: 100
-        }, {
-            icon: 'fa-solid fa-users',
-            title: "Interventi familiari",
-            description: "Sessioni con genitori, figli e familiari per affrontare dinamiche familiari complesse.",
-            cost: 90
-        }, {
-            icon: 'fa-solid fa-video',
-            title: "Sedute telematiche",
-            description: "Sessioni disponibili tramite videoconsulenza per maggiore comodità e accessibilità.",
-            cost: 70
-        }]
-    }
-
     set site(s: Site) {
         this._site = s;
     }
@@ -121,6 +97,15 @@ export class SiteService {
     get site(): Site | undefined {
         return this._site;
     }
+
+    isWebinarExpired(w: Webinar) {
+        return new Date(w.utcDate) < new Date();
+    }
+
+    navigateToWebinar(w: Webinar) {
+        void this.router.navigate(['webinar', w.title+w.utcDate]);
+    }
+
 }
 
 
@@ -128,5 +113,5 @@ export class SiteService {
 export const webinarResolver: ResolveFn<Webinar> = (route, state) => {
     const siteService = inject(SiteService);
     const wTitle = route.paramMap.get('id');
-    return siteService.site!.webinars.filter(w => w.title === wTitle)[0];
+    return siteService.site!.webinars.filter(w => w.title+w.utcDate === wTitle)[0];
 };

@@ -56,3 +56,10 @@
 .summary.expired {
     opacity: 0.65;
 }
+
+.summary.highlight {
+    font-size: 150%;
+    color: #721c24;
+    border-top-color: #6a5a86;
+    box-shadow: 0 8px 24px rgba(90, 74, 126, 0.22);
+}

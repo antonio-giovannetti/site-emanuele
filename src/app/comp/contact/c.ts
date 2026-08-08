@@ -1,8 +1,9 @@
 import {ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef} from "@angular/core";
 import {SiteService} from "../../service/siteservice";
 import {Contatto} from "../../dto/main";
-import {FormsModule} from "@angular/forms";
+import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import {ActivatedRoute, ActivatedRouteSnapshot} from "@angular/router";
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -11,12 +12,16 @@ import {CommonModule} from "@angular/common";
     standalone: true,
     imports: [
         FormsModule,
-        CommonModule
+        CommonModule,
+        ReactiveFormsModule
     ],
     styleUrls: ['./c.scss']
 })
 export class CContact implements OnInit {
-
+    fcName: FormControl<string>;
+    fcEmail: FormControl<string>;
+    fcTel: FormControl<string>;
+    fcMsg: FormControl<string>;
     contatto: Contatto;
     isSubmitting = false;
     message: { type: 'success' | 'error' | 'info'; text: string } | null = null;
@@ -24,13 +29,22 @@ export class CContact implements OnInit {
 
     constructor(
         private siteService: SiteService,
+        private activatedRoute: ActivatedRoute,
         private cdr: ChangeDetectorRef
     ) {
         this.contatto = siteService.site?.titolare?.contatto!;
+        this.fcName = new FormControl('', { nonNullable: true });
+        this.fcEmail = new FormControl('', { nonNullable: true });
+        this.fcTel = new FormControl('', { nonNullable: true });
+        this.fcMsg = new FormControl('', { nonNullable: true });
     }
 
     ngOnInit(): any {
         this.refreshCaptcha();
+        const subject = this.activatedRoute.snapshot.queryParamMap.get("subject");
+        if (subject) {
+            this.fcMsg.setValue(`Vorrei informazioni su ${subject}`);
+        }
     }
 
     refreshCaptcha() {
@@ -52,6 +66,7 @@ export class CContact implements OnInit {
         if (!form) return;
 
         this.isSubmitting = true;
+        this.setFormControlsDisabled(true);
         this.message = null;
         this.cdr.markForCheck();
 
@@ -99,8 +114,23 @@ export class CContact implements OnInit {
             };
         } finally {
             this.isSubmitting = false;
+            this.setFormControlsDisabled(false);
             this.cdr.markForCheck();
         }
+    }
+
+    private setFormControlsDisabled(disabled: boolean) {
+        if (disabled) {
+            this.fcName.disable();
+            this.fcEmail.disable();
+            this.fcTel.disable();
+            this.fcMsg.disable();
+            return;
+        }
+        this.fcName.enable();
+        this.fcEmail.enable();
+        this.fcTel.enable();
+        this.fcMsg.enable();
     }
 
 }

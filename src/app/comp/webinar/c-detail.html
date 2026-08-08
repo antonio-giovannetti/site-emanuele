@@ -1,10 +1,6 @@
-<section id="webinar" class="webinar">
+<section id="webinar" class="webinar container">
     <c-video [src]="'7521690-hd_1920_1080_25fps.mp4.webm'" ></c-video>
-    <div class="container">
         <h2 class="webinar-section-title">Incontro</h2>
-    </div>
-
-    <div class="container">
         <div class="webinar-grid">
             <div class="webinar-content">
                 @if (w.type === 'WEBINAR') {
@@ -13,6 +9,7 @@
                 <h2>{{w.title}}</h2>
                 <p>{{w.description}}</p>
                 @if (w.media) {
+                    <div class="webinar-media">
                     @for (m of w.media!; track m) {
                         @if (m?.type === 'IMAGE') {
                             <img [src]="m?.src" [alt]="m?.caption">
@@ -20,6 +17,7 @@
                             <video [src]="m?.src" controls></video>
                         }
                     }
+                    </div>
                 }
                 <div class="webinar-details">
                     <div class="detail-item">
@@ -45,16 +43,21 @@
                         </div>
                     }
                 </div>
-                @if (!!w!.args && w!.args.length > 0) {
+                @if (!!w!.info && w!.info.length > 0) {
                     <div class="webinar-benefits">
                         <h3>Cosa imparerai:</h3>
                         <ul>
-                            @for(d of w.args; track d) {
+                            @for(d of w.info; track d) {
                                 <li>{{ d }}</li>
                             }
                         </ul>
                     </div>
                 }
+                @if(!isWebinarExpired(w)) {
+                    <button class="btn btn-primary" (click)="requestInfo(w)">Richiedi informazioni</button>
+                }
+
+
             </div>
             @if (w.form) {
             <div class="webinar-form">
@@ -113,5 +116,4 @@
                 </div>
             </div>}
         </div>
-    </div>
 </section>

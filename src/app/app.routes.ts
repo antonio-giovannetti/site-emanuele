@@ -28,14 +28,6 @@ export const appRoutes: Routes = [
     component: CAllHome
   },
   {
-    path: 'service',
-    component: CAllHome
-  },
-  {
-    path: 'section',
-    component: CAllHome
-  },
-  {
     path: 'contact',
     component: CAllHome
   },

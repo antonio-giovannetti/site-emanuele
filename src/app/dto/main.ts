@@ -56,7 +56,7 @@ export interface Webinar {
     utcDate: Date
     people: number
     extra: string
-    args: string[]
+    info: string[]
     price: number
     form: boolean
 }

@@ -16,6 +16,7 @@ import {CAudio} from "./comp/media/audio";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {Site} from "./dto/main";
+import {CommonModule} from "@angular/common";
 
 function normalizeHashbangUrl(): () => void {
   return () => {
@@ -45,6 +46,7 @@ function preloadSiteConfig(httpClient: HttpClient, siteService: SiteService): ()
   ],
     imports: [
         BrowserModule,
+        CommonModule,
         RouterModule.forRoot(appRoutes, appRouterOptions),
         HttpClientModule,
         CContact,

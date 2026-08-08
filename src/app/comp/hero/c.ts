@@ -7,8 +7,9 @@ import {
     Output,
     ViewChild
 } from "@angular/core";
+import {DatePipe} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {Aforisma, Site, Titolare} from "../../dto/main";
+import {Aforisma, Site, Titolare, Webinar} from "../../dto/main";
 import {SiteService} from "../../service/siteservice";
 import {Title} from "@angular/platform-browser";
 
@@ -17,12 +18,16 @@ import {Title} from "@angular/platform-browser";
     selector: 'c-hero',
     templateUrl: './c.html',
     standalone: true,
+    imports: [
+        DatePipe
+    ],
     styleUrls: ['./c.scss']
 })
 export class CHero implements OnInit {
     site?: Site;
     autoplay: boolean;
     af?: Aforisma;
+    nextWebinar?: Webinar;
 
     @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
     constructor(private siteService: SiteService, private cdr: ChangeDetectorRef) {
@@ -32,6 +37,12 @@ export class CHero implements OnInit {
 
     scrollToSection(sectionId: string)  {
         this.siteService.scrollToSection(sectionId);
+    }
+
+    navigateToWebinar() {
+        if (this.nextWebinar) {
+            this.siteService.navigateToWebinar(this.nextWebinar);
+        }
     }
 
     ngOnInit(): any {
@@ -46,6 +57,13 @@ export class CHero implements OnInit {
             } else {
                 this.af = aforismi[this.site?.aforismi.show as number];
             }
+        }
+
+        const ws: Webinar[] | undefined= this.site?.webinars?.filter((webinar) => {
+            return !this.siteService.isWebinarExpired(webinar);
+        });
+        if (!!ws && ws.length>0) {
+            this.nextWebinar = ws[0];
         }
     }
 

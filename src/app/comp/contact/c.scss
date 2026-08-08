@@ -11,7 +11,14 @@
     &-info {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
+        h4 {
+            margin-top: 1.5rem;
+            color: var(--primary-color);
+        }
+        .info-item {
+            ul {margin-left: 2rem}
+        }
     }
 
     &-form {
@@ -19,12 +26,12 @@
         padding: 2rem;
         border-radius: 10px;
     }
+    .btn {
+        float: right;
+    }
 }
 
-.info-item h4 {
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
-}
+
 
 .info-item p {
     color: var(--text-gray);
