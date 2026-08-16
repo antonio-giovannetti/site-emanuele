@@ -1,11 +1,10 @@
 {
   "settings": {
     "autoPlayAudio": false,
-    "autoPlayVideo": true
+    "autoPlayVideo": true,
+    "showAforisma": 0
   },
-  "aforismi": {
-    "show": 0,
-    "aforismi": [
+  "aforismi": [
       {
         "text": "I pensieri negativi sono come le nuvole che passano, ma non sono realtà. La realtà è ciò noi percepiamo, e la nostra percezione è filtrata dai nostri pensieri",
         "author": "Aaron Beck"
@@ -14,7 +13,7 @@
       "text": "La mente è come un paracadute. Funziona solo se si apre.",
       "author": "Albert Einstein"
     }
-  ]},
+  ],
   "social": [
     {
       "name": "Facebook",
@@ -29,14 +28,31 @@
   ],
   "webinars": [{
     "form": false,
-    "type": "WEBINAR",
-    "title": "Come superare l'ansia e ritrovare la serenità",
-    "description": "Un webinar esclusivo con il Dr. Emanuele Ceci per apprendere tecniche pratiche e evidence-based per gestire l'ansia nel quotidiano.",
+    "location": {
+      "indirizzo1": "Via Civitavecchia 3",
+      "indirizzo2": "03033 Arpino(FR)",
+      "indirizzo3": "Piscina Sunrise Crest"
+    },
+    "type": "LIVE",
+    "title": "Mindfulness al tramonto",
+    "description": "Un incontro esclusivo con il Dr. Emanuele Ceci e il Dr. Massimo Vidimar per apprendere tecniche pratiche e evidence-based per gestire l'ansia nel quotidiano.",
     "utcDate": "2026-07-28T16:00:00Z",
-    "people": 100,
+    "people": null,
+    "media": [{
+      "type": "VIDEO",
+      "src": "assets/video/0_1.mp4",
+      "thumb": "assets/images/0_1-thumb.png",
+      "caption": "",
+      "date": "2024-01-01"
+    },{
+      "type": "IMAGE",
+      "src": "assets/images/0_1-f000147.png",
+      "caption": "",
+      "date": "2024-01-01"
+    }],
     "price": 0,
-    "extra": "Riceverai una guida PDF \"5 tecniche anti-ansia\"",
-    "args": [
+    "extra": "",
+    "info": [
       "Tecniche di respirazione basate su evidence",
       "Come identificare i trigger dell'ansia",
       "Strategie CBT per gestire pensieri negativi",
@@ -59,12 +75,34 @@
       "media": [{
         "type": "VIDEO",
         "src": "assets/video/1.mp4",
+        "thumb": "assets/images/1-thumb.png",
         "caption": "",
         "date": "2024-01-01"
       }],
       "price": null,
       "extra": null
-    }],
+    },
+    {
+      "form": false,
+      "location": {
+        "indirizzo1": "Centro di osteopatia Giacomo Paone",
+        "indirizzo2": "Sora, Via Cellaro snc"
+      },
+      "type": "LIVE",
+      "title": "Rallenta, respira, ritrova te",
+      "description": "Un incontro esclusivo con il Dr. Emanuele Ceci e il Dr. Massimo Vidimar per apprendere tecniche pratiche e evidence-based per gestire l'ansia nel quotidiano.",
+      "utcDate": "2026-09-01T17:45:00Z",
+      "people": null,
+      "media": [{
+        "type": "IMAGE",
+        "src": "assets/images/2.jpeg",
+        "caption": "",
+        "date": "2024-01-01"
+      }],
+      "price": null,
+      "extra": null
+    }
+  ],
   "process": [
     {
       "title": "Primo colloquio",
@@ -132,11 +170,10 @@
       "tel": "",
       "cell": "+393773993700 ",
       "email": "studiodipsicologiaceci@gmail.com",
-      "pec": "emanuelececi79@pec.it",
-      "orari": ["Lun-Ven 9:00-18:00"]
+      "orari": ["Lun 16:30-19:30","Mar 16:30-19:30", "Mer 13:30-19:30", "Gio 9:00-19:30", "Ven 9:00-19:30"]
     },
     "name": "Dr. Emanuele Ceci",
-    "sub1": "Psicoterapeuta clinico specializzato in terapia cognitivo-comportamentale",
+    "sub1": "Psicoterapeuta clinico specializzato in mindfulness e terapia cognitivo-comportamentale",
     "sub2": "Sono uno psicoterapeuta con esperienza nel supportare individui e coppie attraverso momenti di difficoltà emotiva. Il mio approccio è basato sull'ascolto empatico, la comprensione profonda e l'utilizzo di tecniche evidence-based per facilitare il cambiamento positivo.",
     "image": "assets/1-975x1024.jpeg",
     "spec": ["Mindfulness", "Ansia e disturbi d'ansia", "Depressione e disturbi dell'umore", "Terapia di coppia", "Gestione dello stress e burnout", "Trauma e PTSD"],
@@ -147,6 +184,17 @@
     "ordine": "Ordine degli psicologi del Lazio nella sezione A dell'Albo dal 25/01/2021 con il n. 26142",
     "linkOrdine": "https://ordinepsicologilazio.it/albo/iscrizione-26142"
   },
+  "servizi": [{
+    "icon": "fa-solid fa-person",
+    "title": "Terapia individuale",
+    "description": "Sessioni personalizzate per affrontare ansia, depressione, stress e difficoltà emotive con tecniche scientificamente provate.",
+    "cost": 50
+  }, {
+    "icon": "fa-solid fa-people-arrows",
+    "title": "Terapia di coppia",
+    "description": "Supporto professionale per migliorare la comunicazione, risolvere conflitti e rafforzare la relazione di coppia.",
+    "cost": 80
+  }],
   "title": "Benvenuto nel mio studio",
   "subtitle": "Accompagnamento professionale verso il benessere psicologico"
 }

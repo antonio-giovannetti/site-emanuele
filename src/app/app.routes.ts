@@ -4,6 +4,7 @@ import {CAllHome} from "./comp/all_home/c";
 import {CCert} from "./comp/cert/c";
 import {CWebinarDetail} from "./comp/webinar/c-detail";
 import {webinarResolver} from "./service/siteservice";
+import {CAdminWebinar} from "./admin/webinar/c";
 
 export const appRoutes: Routes = [
   {
@@ -38,6 +39,10 @@ export const appRoutes: Routes = [
   {
     path: 'cert',
     component: CCert
+  },
+  {
+    path: 'admin/webinar',
+    component: CAdminWebinar
   },
   {
     path: 'webinar/:id',

@@ -1,0 +1,35 @@
+services:
+  mariadb:
+    image: mariadb:11
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: crud_site
+      MARIADB_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./backend/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+
+  php:
+    image: php:8.3-apache
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      DB_HOST: mariadb
+      DB_PORT: 3306
+      DB_DATABASE: crud_site
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      CORS_ORIGIN: http://localhost:4200
+    volumes:
+      - ./backend:/var/www/html
+    depends_on:
+      - mariadb
+    command: >
+      bash -c "docker-php-ext-install pdo_mysql &&
+      apache2-foreground"
+
+volumes:
+  mariadb_data:

@@ -2,7 +2,7 @@
 .controls {
   position: fixed;
   bottom: 0;
-  right: 0;
+  right: 4rem;
   width: min(30rem, calc(100vw - 2rem));
   min-height: 2rem;
   display: flex;
@@ -13,9 +13,6 @@
   background: rgba(0, 0, 0, 0.7);
   color: blanchedalmond;
   z-index: 1;
-}
-
-.controls {
   span {
     flex: 1;
     overflow: hidden;

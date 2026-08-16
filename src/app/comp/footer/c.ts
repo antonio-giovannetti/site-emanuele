@@ -13,9 +13,12 @@ export class CFooter {
     year: number;
     si?: Site;
     titolare: Titolare;
+    waLink: string;
     constructor(private siteService: SiteService, private cdr: ChangeDetectorRef) {
         this.si = siteService.site;
         this.titolare = this.si?.titolare!;
+        // this.waLink = 'https://wa.me/' + encodeURIComponent(this.titolare.contatto.cell) + '?text=Ciao';
+        this.waLink = 'https://wa.me/' + this.titolare.contatto.cell ;
         this.cdr.markForCheck();
         this.year = new Date().getFullYear();
     }

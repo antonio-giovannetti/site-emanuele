@@ -69,6 +69,14 @@
                 </div>
 
                 <!-- CAPTCHA Section -->
+<!--                <altcha-widget
+                    #altchaWidget
+                    [attr.challengeurl]="'https://eu.altcha.com/api/v1/challenge'"
+                    [attr.hidelogo]="false"
+                    (verify)="onAltchaVerify($event)"
+                    (error)="onAltchaError($event)"
+                ></altcha-widget> -->
+
                 <div class="form-group captcha-group" [ngClass]="{ 'captcha-error': captchaError }">
                     <label>Verifica di sicurezza</label>
                     <div class="captcha-container" [class.disabled]="isSubmitting">
@@ -87,8 +95,9 @@
                     <input 
                         type="text" 
                         id="captcha" 
-                        name="captcha" 
-                        placeholder="Inserisci il codice sopra" 
+                        name="captcha"
+                        [formControl]="fcCaptcha"
+                        placeholder="Inserisci il codice sopra"
                         maxlength="6" 
                         required
                         class="captcha-input">

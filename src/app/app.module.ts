@@ -17,6 +17,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {Site} from "./dto/main";
 import {CommonModule} from "@angular/common";
+import {CCookieConsent} from "./comp/cookie-consent/c";
 
 function normalizeHashbangUrl(): () => void {
   return () => {
@@ -58,7 +59,8 @@ function preloadSiteConfig(httpClient: HttpClient, siteService: SiteService): ()
         RouterOutlet,
         CProcess,
         CHeader,
-        CAudio
+        CAudio,
+        CCookieConsent
     ],
   providers: [
     SiteService,

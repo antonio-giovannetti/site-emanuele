@@ -1,9 +1,8 @@
 .about {
-    padding-top: 80px;
     background-color: var(--light-bg);
     &-grid {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 2rem;
         align-items: start;
         margin-top: 3rem;
@@ -77,6 +76,9 @@
 }
 
 @media (max-width: 1600px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
     .btn-container {
         float: none;
         display: grid;
@@ -98,17 +100,4 @@
     .cert {
     }
 
-    .about-image,
-    .about-content {
-        width: 100%;
-    }
-
-    .process-steps {
-        grid-template-columns: 1fr;
-    }
-
-    .about,
-    .process {
-        padding: 40px 0;
-    }
 }

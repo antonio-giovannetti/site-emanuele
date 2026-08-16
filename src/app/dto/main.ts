@@ -35,6 +35,7 @@ export interface Servizio {
 
 export interface Media {
     src?: string;
+    thumb?: string;
     caption: string;
     date?: Date;
     type: 'VIDEO' | 'IMAGE' |' AUDIO'
@@ -69,13 +70,9 @@ export interface ProcessStep {
 export interface Settings {
     autoPlayAudio: boolean;
     autoPlayVideo: boolean;
-}
+    showAforisma: 'random' | number;
 
-export interface WrapperAforisma {
-    show: 'random' | number;
-    aforismi?: Aforisma[];
 }
-
 
 export interface Aforisma {
     text: string;
@@ -93,7 +90,7 @@ export interface Site {
 
     settings: Settings;
     social: Social[];
-    aforismi?: WrapperAforisma;
+    aforismi?: Aforisma[];
     title: string;
     subtitle: string;
     titolare: Titolare;

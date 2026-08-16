@@ -63,3 +63,11 @@
     border-top-color: #6a5a86;
     box-shadow: 0 8px 24px rgba(90, 74, 126, 0.22);
 }
+
+.summary-card {
+    transition: all 0.3s ease;
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+}

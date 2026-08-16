@@ -1,0 +1,11 @@
+@if (visible) {
+    <section class="cookie-consent" role="dialog" aria-live="polite" aria-label="Cookie consent">
+        <p>
+            Utilizziamo cookie tecnici per migliorare la navigazione. Puoi accettare o rifiutare i cookie non essenziali.
+        </p>
+        <div class="actions">
+            <button type="button" class="btn btn-secondary" (click)="reject()">Rifiuta</button>
+            <button type="button" class="btn btn-primary" (click)="accept()">Accetta</button>
+        </div>
+    </section>
+}

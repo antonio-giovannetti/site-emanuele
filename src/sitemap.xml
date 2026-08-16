@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+        xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0"
+>
 
     <!-- Homepage - highest priority -->
     <url>
@@ -9,6 +11,20 @@
         <lastmod>2026-08-06</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
+        <geo:geo>
+            <geo:format>kml</geo:format>
+            <![CDATA[
+        <kml xmlns="http://www.opengis.net/kml/2.2">
+          <Document>
+            <Placemark>
+              <Point>
+                <coordinates>13.658659,41.749732</coordinates>
+              </Point>
+            </Placemark>
+          </Document>
+        </kml>
+      ]]>
+        </geo:geo>
     </url>
 
     <!-- Main Pages -->

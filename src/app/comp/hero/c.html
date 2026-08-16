@@ -1,22 +1,22 @@
 <section id="hero" class="hero container">
-    <video #videoPlayer class="video-background" [autoplay]="autoplay" muted loop>
+    <video #videoPlayer class="video-background" src="assets/video/7521690-hd_1920_1080_25fps.mp4.webm" [autoplay]="autoplay" muted loop poster="assets/images/7521690-hd_1920_1080_25fps.mp4.webm.png">
 <!--        <source src="assets/output.webm" type="video/webm">-->
-        <source src="assets/video/7521690-hd_1920_1080_25fps.mp4.webm" type="video/webm">
     </video>
 
         <div class="hero-content">
             <h1>{{ site?.title }}</h1>
             <p>{{ site?.titolare!.description }}</p>
-            @if(nextWebinar) {
-                <div class="nextWebinar summary-card summary highlight" (click)="navigateToWebinar()">
-                    <small>Prossimo evento</small>
-                    <h4>{{ nextWebinar.title }}</h4>
-                    <span class="date">{{ nextWebinar.utcDate | date: 'EEEE d MMMM yyyy':'':'it' }}</span>
-                </div>
-            } @else {
-                <button class="btn btn-primary" (click)="scrollToSection('contact')">Prenota una sessione</button>
-            }
         </div>
+    <div class="fastLink">
+    @if(nextWebinar) {
+        <div class="nextWebinar summary-card summary highlight" (click)="navigateToWebinar()">
+            <small>Prossimo evento</small>
+            <h4>{{ nextWebinar.title }}</h4>
+            <span class="date">{{ nextWebinar.utcDate | date: 'EEEE d MMMM yyyy':'':'it' }}</span>
+        </div>
+    } @else {
+        <button class="btn btn-primary" (click)="scrollToSection('contact')">Prenota una sessione</button>
+    }</div>
     @if (!!af) {
         <div class="hero-quote">
             <p class="hero-quote-text">"{{ af.text }}"</p>

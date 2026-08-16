@@ -1,0 +1,5 @@
+https://altcha.org/docs/v2/
+
+Open Source Option
+
+https://cdn.jsdelivr.net/gh/altcha-org/altcha/dist/altcha.min.js

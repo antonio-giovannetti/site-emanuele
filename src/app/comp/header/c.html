@@ -1,4 +1,5 @@
 
+<!--<a [routerLink]="['/admin/webinar']" [class.active]="activeSection === 'hero'" class="nav-link">Admin</a>-->
 
 <header class="navbar">
     <div class="container navbar-container">
@@ -6,7 +7,7 @@
         <nav [class.active]="isMenuOpen" class="nav-menu">
             <a [routerLink]="['/hero']" [class.active]="activeSection === 'hero'" class="nav-link">Home</a>
             <a [routerLink]="['/about']" [class.active]="activeSection === 'about'" class="nav-link">Chi sono</a>
-            <a [routerLink]="['/webinar']" [class.active]="activeSection === 'webinar'" class="nav-link nav-webinar">Webinar</a>
+            <a [routerLink]="['/webinar']" [class.active]="activeSection === 'webinar'" class="nav-link nav-webinar">Incontri</a>
             <a [routerLink]="['/services']" [class.active]="activeSection === 'services'" class="nav-link">Servizi</a>
             <a [routerLink]="['/contact']" [class.active]="activeSection === 'contact'" class="nav-link">Contatti</a>
             <div class="nav-social">

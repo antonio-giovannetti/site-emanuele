@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef} from "@angular/core";
+import {ChangeDetectionStrategy, Component, OnInit, ChangeDetectorRef, CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {SiteService} from "../../service/siteservice";
 import {Contatto} from "../../dto/main";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -15,9 +15,11 @@ import {ActivatedRoute, ActivatedRouteSnapshot} from "@angular/router";
         CommonModule,
         ReactiveFormsModule
     ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
     styleUrls: ['./c.scss']
 })
 export class CContact implements OnInit {
+    fcCaptcha: FormControl<string>;
     fcName: FormControl<string>;
     fcEmail: FormControl<string>;
     fcTel: FormControl<string>;
@@ -37,6 +39,7 @@ export class CContact implements OnInit {
         this.fcEmail = new FormControl('', { nonNullable: true });
         this.fcTel = new FormControl('', { nonNullable: true });
         this.fcMsg = new FormControl('', { nonNullable: true });
+        this.fcCaptcha = new FormControl('', { nonNullable: true });
     }
 
     ngOnInit(): any {
@@ -45,6 +48,14 @@ export class CContact implements OnInit {
         if (subject) {
             this.fcMsg.setValue(`Vorrei informazioni su ${subject}`);
         }
+    }
+
+    onAltchaVerify($event: any) {
+
+    }
+
+    onAltchaError($event: any) {
+
     }
 
     refreshCaptcha() {
@@ -62,15 +73,18 @@ export class CContact implements OnInit {
     }
 
     async onSubmit() {
-        const form = document.querySelector('.contact-form') as HTMLFormElement;
-        if (!form) return;
 
         this.isSubmitting = true;
         this.setFormControlsDisabled(true);
         this.message = null;
         this.cdr.markForCheck();
 
-        const formData = new FormData(form);
+        const formData = new FormData();
+        formData.append('name', this.fcName.value);
+        formData.append('email', this.fcEmail.value);
+        formData.append('phone', this.fcTel.value);
+        formData.append('message', this.fcMsg.value);
+        formData.append('captcha', this.fcCaptcha.value);
 
         try {
             // Submit form with CAPTCHA verification to backend handler
@@ -86,7 +100,10 @@ export class CContact implements OnInit {
                     type: 'success',
                     text: result.message
                 };
-                form.reset();
+                this.fcName.reset();
+                this.fcEmail.reset();
+                this.fcTel.reset();
+                this.fcMsg.reset();
                 this.refreshCaptcha();
 
                 setTimeout(() => {
@@ -125,12 +142,14 @@ export class CContact implements OnInit {
             this.fcEmail.disable();
             this.fcTel.disable();
             this.fcMsg.disable();
+            this.fcCaptcha.disable();
             return;
         }
         this.fcName.enable();
         this.fcEmail.enable();
         this.fcTel.enable();
         this.fcMsg.enable();
+        this.fcCaptcha.enable();
     }
 
 }

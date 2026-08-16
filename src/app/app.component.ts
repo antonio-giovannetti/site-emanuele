@@ -6,6 +6,7 @@ import {Title} from "@angular/platform-browser";
 import {CHeader} from "./comp/header/c";
 import {NavigationEnd, Router} from "@angular/router";
 import {Location} from "@angular/common";
+import {SeoService} from "./service/seo.service";
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,16 +23,18 @@ export class AppComponent implements OnInit {
   private lastSyncedRoutePath?: string;
   private isSyncingSectionFromRoute = false;
 
-  constructor(private siteService: SiteService, private titleService: Title, private cdr: ChangeDetectorRef, private router: Router, private location: Location) {
+  constructor(private siteService: SiteService, private titleService: Title,
+              private seoService: SeoService,
+              private cdr: ChangeDetectorRef, private router: Router, private location: Location) {
       this.site = siteService.site;
       this.auds = [
       'fatbunny-relax-491785.mp3',
     'paulyudin-ambient-relax-113444.mp3','synclabmusic-free-music-relax-425870.mp3',
-    'chrispixer-just-relax-214589.mp3',
-    'giorgiovitte-relax-relax-music-503805.mp3',
+    // 'chrispixer-just-relax-214589.mp3',
+    // 'giorgiovitte-relax-relax-music-503805.mp3',
     'royaltyuserecords-flute-hop-relax-344988.mp3',
-    'coma-media-milk-shake-116330.mp3',
-    'oleg-mazur-time-for-relax-itx27s-time-to-take-a-break-and-relax-299791.mp3',
+    // 'coma-media-milk-shake-116330.mp3',
+    // 'oleg-mazur-time-for-relax-itx27s-time-to-take-a-break-and-relax-299791.mp3',
     'sigmamusicart-relaxing-relax-background-music-537728.mp3'    ];
     //  = ["cm4.mp3","cp2.mp3","fb5.mp3","gg6.mp3",
     //   "om1.mp3",
@@ -51,6 +54,9 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // this.seoService.setPageMeta();
+
+
     this.lastSyncedRoutePath = this.router.url.split('?')[0];
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

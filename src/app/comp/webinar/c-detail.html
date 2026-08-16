@@ -14,7 +14,7 @@
                         @if (m?.type === 'IMAGE') {
                             <img [src]="m?.src" [alt]="m?.caption">
                         } @else if (m?.type === 'VIDEO') {
-                            <video [src]="m?.src" controls></video>
+                            <video [src]="m?.src" controls [poster]="m?.thumb"></video>
                         }
                     }
                     </div>

@@ -43,7 +43,7 @@ export interface SeoMetadata {
 })
 export class SeoService {
     private readonly siteUrl = 'https://psicoterapeutaceci.eu';
-    private readonly siteName = 'Dr.ssa Ceci - Psicoterapeuta';
+    private readonly siteName = 'Dr. Ceci - Psicoterapeuta';
     private readonly defaultImage = 'https://psicoterapeutaceci.eu/assets/og-image.jpg';
     private readonly twitterHandle = '@Dottoressa_Ceci'; // Update with your Twitter handle
 

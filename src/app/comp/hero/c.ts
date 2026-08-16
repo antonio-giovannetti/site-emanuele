@@ -46,16 +46,16 @@ export class CHero implements OnInit {
     }
 
     ngOnInit(): any {
-        if (this.site?.aforismi) {
-            const aforismi = this.site?.aforismi?.aforismi;
+        if (this.site?.settings?.showAforisma !== undefined) {
+            const aforismi = this.site?.aforismi;
             if (!aforismi) {return;}
-            if (this.site?.aforismi.show === "random") {
+            if (this.site?.settings?.showAforisma === "random") {
                 if (aforismi && aforismi.length > 0) {
                     const randomIndex = Math.floor(Math.random() * aforismi.length);
                     this.af = aforismi[randomIndex];
                 }
             } else {
-                this.af = aforismi[this.site?.aforismi.show as number];
+                this.af = aforismi[this.site?.settings?.showAforisma as number];
             }
         }
 
