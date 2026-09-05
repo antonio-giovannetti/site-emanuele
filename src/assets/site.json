@@ -101,6 +101,46 @@
       }],
       "price": null,
       "extra": null
+    },
+    {
+      "form": false,
+      "location": {
+        "indirizzo1": "Centro di osteopatia Giacomo Paone",
+        "indirizzo2": "Sora, Via Cellaro snc"
+      },
+      "type": "LIVE",
+      "title": "Rallenta, respira, ritrova te",
+      "description": "Un incontro esclusivo con il Dr. Emanuele Ceci e il Dr. Massimo Vidimar per apprendere tecniche pratiche e evidence-based per gestire l'ansia nel quotidiano.",
+      "utcDate": "2026-09-08T17:45:00Z",
+      "people": null,
+      "media": [{
+        "type": "IMAGE",
+        "src": "assets/images/3.jpeg",
+        "caption": "",
+        "date": "2024-01-01"
+      }],
+      "price": null,
+      "extra": null
+    },
+    {
+      "form": false,
+      "location": {
+        "indirizzo1": "Centro di osteopatia Giacomo Paone",
+        "indirizzo2": "Sora, Via Cellaro snc"
+      },
+      "type": "LIVE",
+      "title": "Rallenta, respira, ritrova te",
+      "description": "Un incontro esclusivo con il Dr. Emanuele Ceci e il Dr. Massimo Vidimar per apprendere tecniche pratiche e evidence-based per gestire l'ansia nel quotidiano.",
+      "utcDate": "2026-09-15T17:45:00Z",
+      "people": null,
+      "media": [{
+        "type": "IMAGE",
+        "src": "assets/images/3.jpeg",
+        "caption": "",
+        "date": "2024-01-01"
+      }],
+      "price": null,
+      "extra": null
     }
   ],
   "process": [
