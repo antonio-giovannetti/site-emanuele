@@ -12,6 +12,7 @@ import {FormsModule} from "@angular/forms";
 import {Aforisma, Site, Titolare, Webinar} from "../../dto/main";
 import {SiteService} from "../../service/siteservice";
 import {Title} from "@angular/platform-browser";
+import {CVideo} from "../media/video";
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,7 +20,8 @@ import {Title} from "@angular/platform-browser";
     templateUrl: './c.html',
     standalone: true,
     imports: [
-        DatePipe
+        DatePipe,
+        CVideo
     ],
     styleUrls: ['./c.scss']
 })

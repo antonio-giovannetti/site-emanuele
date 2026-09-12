@@ -4,7 +4,7 @@ import {SiteService} from "../../service/siteservice";
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'c-video',
-    template: '<video #videoPlayer class="video-background" [autoplay]="autoplay" muted loop>' +
+    template: '<video #videoPlayer class="video-background" [autoplay]="autoplay" muted loop [poster]="\'assets/images/\' + src + \'.png\'">' +
         '<source [src]="\'assets/video/\' + src" [type]="type"></video>',
     standalone: true
 })
