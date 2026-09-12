@@ -124,12 +124,10 @@ export class AppComponent implements OnInit {
 
     this.isSyncingSectionFromRoute = true;
     this.lastUrlSection = sectionId;
+    this.siteService.scrollToSectionOnly(sectionId);
     setTimeout(() => {
-      this.siteService.scrollToSectionOnly(sectionId);
-      setTimeout(() => {
-        this.isSyncingSectionFromRoute = false;
-      }, 350);
-    });
+      this.isSyncingSectionFromRoute = false;
+    }, 350);
   }
 
 }

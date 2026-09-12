@@ -3,7 +3,7 @@ import {Location} from "@angular/common";
 import {Contatto, Media, ProcessStep, Servizio, Site, Titolare, Webinar} from "../dto/main";
 import {Observable, Subject, Subscription} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {ResolveFn, Router} from "@angular/router";
+import {NavigationExtras, ResolveFn, Router} from "@angular/router";
 
 @Injectable({
     providedIn: 'root',
@@ -44,6 +44,7 @@ export class SiteService {
         if (normalized === 'service' || normalized === 'services' || normalized === 'section') {
             return 'services';
         }
+        console.warn(`Unknown route path for: ${routePath}`);
         return undefined;
     }
 
@@ -61,8 +62,8 @@ export class SiteService {
         this.scrollSection(sectionId);
     }
 
-    scrollToSection(sectionId: string) {
-        this.scrollToSectionRoute(sectionId)
+    scrollToSection(sectionId: string, extras?: NavigationExtras) {
+        this.scrollToSectionRoute(sectionId, extras)
     }
     private scrollToSectionFragment(sectionId: string) {
         this.router.navigate([], {fragment: sectionId, replaceUrl: true}).then((navigated) => {
@@ -73,13 +74,17 @@ export class SiteService {
     }
 
 
-    private scrollToSectionRoute(sectionId: string) {
+    private scrollToSectionRoute(sectionId: string, extras?: NavigationExtras) {
         const routePath = this.sectionToRoutePath(sectionId);
 
         const currentPath = this.router.url.split('?')[0];
         const targetPath = '/' + routePath;
+        const queryParams = extras?.queryParams;
+        const hasQueryParams = !!queryParams && Object.keys(queryParams).length > 0;
+        const currentQueryParams = this.router.parseUrl(this.router.url).queryParams;
+        const queryParamsChanged = hasQueryParams && JSON.stringify(currentQueryParams) !== JSON.stringify(queryParams);
         if (currentPath !== targetPath) {
-            void this.router.navigate([routePath], {replaceUrl: true}).then((navigated) => {
+            void this.router.navigate([routePath], {replaceUrl: true, ...extras}).then((navigated) => {
                 if (!navigated) {
                     return;
                 }
@@ -88,6 +93,9 @@ export class SiteService {
             return;
         }
 
+        if (queryParamsChanged) {
+            void this.router.navigate([], {replaceUrl: true, ...extras});
+        }
         this.scrollSection(sectionId);
     }
     set site(s: Site) {

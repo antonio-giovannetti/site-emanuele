@@ -37,7 +37,7 @@ export class CWebinarDetail implements OnInit {
     requestInfo(w: Webinar): void {
         const formattedDate = this.datePipe.transform(w.utcDate, 'EEEE d MMMM yyyy', undefined, 'it-IT');
         const ne: NavigationExtras = {info: "no_scroll", queryParams: { subject: `${w.title} - ${formattedDate}`}}
-        this.router.navigate(['contact'], ne);
+        this.siteService.scrollToSection('contact', ne);
     }
 
     isWebinarExpired(w: Webinar) {
