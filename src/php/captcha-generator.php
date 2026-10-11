@@ -23,7 +23,7 @@ function generateRandomString($length = CAPTCHA_LENGTH) {
 
 // Generate CAPTCHA SVG
 function generateCaptchaSVG($text) {
-    $width = 250;
+    $width = 30*strlen($text);
     $height = 80;
     
     $svg = '<?xml version="1.0" encoding="UTF-8"?>';
@@ -71,12 +71,15 @@ function generateCaptchaSVG($text) {
     return $svg;
 }
 
-// Generate CAPTCHA
-$captchaText = generateRandomString();
+if (isset($_GET['str'])) {
+    $captchaText = $_GET['str'];
+} else {
+    $captchaText = generateRandomString();
 
-// Store in session
-$_SESSION['captcha_code'] = strtoupper($captchaText);
-$_SESSION['captcha_time'] = time();
+    // Store in session
+    $_SESSION['captcha_code'] = strtoupper($captchaText);
+    $_SESSION['captcha_time'] = time();
+}
 
 // Return SVG
 header('Content-Type: image/svg+xml');

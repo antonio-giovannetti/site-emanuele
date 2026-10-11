@@ -50,6 +50,22 @@ export class CContact implements OnInit {
         }
     }
 
+    public isMobile() {
+        return this.siteService.isMobile();
+    }
+
+    openMail() {
+        const to = this.contatto.email;
+        const cc = '';
+        const bcc = '';
+        const subject = 'Richiesta informazioni';
+        const body = ``;
+        const url = `mailto:${to}?cc=${cc}&bcc=${bcc}` +
+            `&subject=${encodeURIComponent(subject)}` +
+            `&body=${encodeURIComponent(body)}`;
+        window.open(url, '_blank');
+    }
+
     onAltchaVerify($event: any) {
 
     }

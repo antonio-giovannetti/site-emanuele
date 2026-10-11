@@ -4,7 +4,13 @@
         <div class="contact-grid">
             <div class="contact-info">
 
-                <h4><i class="fa-solid fa-map-location"></i><a href="https://maps.google.com/?q=41.749708,13.658675" target="_blank"> Dove</a></h4>
+                <h4><i class="fa-solid fa-map-location"></i>
+                    @if(isMobile()) {
+                        <a href="geo:41.749708,13.658675"> Dove</a>
+                    } @else {
+                        <a href="https://maps.google.com/?q=41.749708,13.658675" target="_blank"> Dove</a>
+                    }
+                </h4>
                 <div class="info-item">
                     <div>{{contatto.indirizzo1}}</div>
                     @if (contatto.indirizzo2) {
@@ -28,7 +34,14 @@
 
                 @if (contatto.email || contatto.pec) {
                     @if (contatto.email) {
-                        <div><i class="fa-regular fa-envelope"></i><a href="mailto:{{contatto.email}}">{{ contatto.email }}</a></div>
+                        <div (click)="openMail()"><i class="fa-regular fa-envelope"></i>
+                            <img
+                                    [src]="'/php/captcha-generator.php?str=' + contatto.email"
+                                    alt="CAPTCHA"
+                                    class="mail-image">
+
+<!--                            <a href="mailto:{{contatto.email}}">{{ contatto.email }}</a>-->
+                        </div>
                     }
                     @if (contatto.pec) {
                         <div><i class="fa-solid fa-envelope-circle-check"></i><a href="mailto:{{contatto.pec}}">{{ contatto.pec }}</a></div>

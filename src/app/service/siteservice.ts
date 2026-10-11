@@ -15,6 +15,11 @@ export class SiteService {
     public constructor(private http: HttpClient, private router: Router, private location: Location) {
     }
 
+    public isMobile(): boolean {
+        return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+    }
+
+
     onScroll(cb: (sectionId: string) => void): Subscription {
         return this.$scrollSub.subscribe(cb);
     }
